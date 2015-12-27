@@ -1,7 +1,7 @@
 #Takes username as Input
-#Type the following in the terminal before using the script
-#pip install requests[security]
-#pip install termcolor
+#Needs the following dependencies :
+# pip install requests[security]
+# pip install termcolor
 
 import requests
 from termcolor import colored
