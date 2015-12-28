@@ -14,17 +14,18 @@ fr = requests.get(f)
 tr = requests.get(t)
 ir = requests.get(i)
 
+def check(status_code):
+	if(status_code == 404):
+		print colored('Available', 'green')
+	else: 
+		print colored('Taken', 'red')
+
+
 print f
-if(ir.status_code == 404):
-	print colored('Available', 'green')
-else: print colored('Taken', 'red')
+check(fr.status_code)
 
 print t
-if(ir.status_code == 404):
-	print colored('Available', 'green')
-else: print colored('Taken', 'red')
+check(tr.status_code)
 
 print i
-if(ir.status_code == 404):
-	print colored('Available', 'green')
-else: print colored('Taken', 'red')
+check(ir.status_code)
