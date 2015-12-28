@@ -15,12 +15,12 @@ tr = requests.get(t)
 ir = requests.get(i)
 
 print f
-if(ir.status_code == 404):
+if(fr.status_code == 404):
 	print colored('Available', 'green')
 else: print colored('Taken', 'red')
 
 print t
-if(ir.status_code == 404):
+if(tr.status_code == 404):
 	print colored('Available', 'green')
 else: print colored('Taken', 'red')
 
