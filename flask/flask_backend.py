@@ -1,6 +1,8 @@
 from flask import Flask
 from flask import render_template
 from jinja2 import Template
+from flask import request
+
 import requests
 
 app = Flask(__name__)
