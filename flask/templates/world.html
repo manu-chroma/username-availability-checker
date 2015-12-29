@@ -4,13 +4,16 @@
 
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='mystyle.css')}}"/>
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:bold:Roboto:light">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 	<title>Hello from flask</title>
 </head>
 <body>
-	<h1> {{username}} </h1>
-	<h1> from facebook {{fr}} <h1>
-		<h1> from insta {{ir}} </h1>
-		<h1> from twitter {{tr}} </h1>
-	</body>
-	</html>
+<div id="Page">
+	<h1> {{username}} </h1><p>
+	<i class="fa fa-facebook-official"></i>  {{fr}}<p>
+	<i class="fa fa-instagram"></i>  {{ir}}<p>
+	<i class="fa fa-twitter"></i> {{tr}}<p>
+</div>
+</body>
+</html>

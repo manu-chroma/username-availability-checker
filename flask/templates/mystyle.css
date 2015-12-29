@@ -1,3 +1,16 @@
-body            { font-family: 'Roboto Light', sans; background: url(yo.gif); }
-a, h1, h2       { color: #333333; }
-h1        		{ font-family: 'Roboto Bold', serif; margin: 0; }
+body{
+font-family: 'Roboto', sans;
+background: url(yo.gif);
+font-weight: 400;
+transform: rotate(30);
+}
+
+a, h1, h2{
+color: #333333;
+}
+
+h1{
+font-family: 'Roboto', serif;
+margin: 0;
+transform: 50;
+}
