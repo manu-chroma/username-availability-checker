@@ -1,19 +1,23 @@
 body {
-  font-family: 'Roboto Light', sans;
-  background: url(yo.gif);
+	font-family: 'Roboto Light', sans;
+	background: url(yo.gif);
+	background-size: cover;
+
 }
 
 a, h1, h2{
-  color: #ffffff;
+	color: #ffffff;
 }
 
 h1{
-  font-family: 'Roboto Bold', serif;
-  margin: 0;
+	font-family: 'Roboto Bold', serif;
+	margin: 0;
 }
 
 #Page {
-  position: relative;
-  top: 50%;
-  transform: translateY(50%);
+	top: 50%;
+	transform: translateY(50%);
+	text-align: center;
 }
+
+
