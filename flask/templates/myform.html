@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">// <![CDATA[
+        function loading(){
+            $("#loading").show();
+            $("#content").hide();       
+        }
+// ]]></script>
 
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='mystyle.css')}}"/>
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='my-form.css')}}"/>
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:bold:Roboto:light">
 
 	<title>Hello from flask</title>
 </head>
 <body>
+
+	<div id="loading"> </div>
+	<div id = "content">
+	
+
 	<center><h1>Enter username : </h1></center>
   <form action="." method="POST">
       <input type="text" name="text">
-      <input type="submit" name="my-form" value="Send">
+      <input type="submit" name="my-form" value="Send" onclick="loading();">
+      </div>
 	</body>
 	</html>
