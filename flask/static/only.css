@@ -30,7 +30,7 @@ h1{
   width: 100%;
 }
 
-div#loading {
+#loading {
     width: 35px;
     height: 35px;
     display: none;
