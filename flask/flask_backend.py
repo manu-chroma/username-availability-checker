@@ -3,6 +3,7 @@ from jinja2 import Template
 import requests
 
 app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 def check(status_code):
 		if(status_code == 404):
