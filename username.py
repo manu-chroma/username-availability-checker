@@ -7,7 +7,7 @@ import requests
 from termcolor import colored
 
 username = raw_input("Enter the username : ")
-sites = ["facebook", "twitter", "instagram", "github"]
+sites = ["facebook", "twitter", "instagram", "github","youtube"]
 
 def check(status_code):
 	if(status_code == 404):
