@@ -1,31 +1,17 @@
+html,
 body {
-	font-family: 'Roboto', sans;
-	font-weight: 200;
-  color: white;
-	background: #4b6cb7; /* fallback for old browsers */
-	background: linear-gradient(to bottom, #4b6cb7 , #182848); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-a, h1, h2{
-	color: #ffffff;
+ font-family: 'Roboto', sans;
+ font-weight: 200;
+ color: white;
+ margin:0;
+ padding:0;
+ height:100%;
 }
 
 h1{
 	font-family: 'Roboto', sans;
 	margin: 0;
-}
-
-#Page {
-	top: 50%;
-	transform: translateY(50%);
-	text-align: left;
-}
-
-#fullpage {
-  background: linear-gradient(#4b6cb7 , #182848); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background-size: 100% 100%;
-  height: 100%;
-  width: 100%;
+	color: #333333;
 }
 
 #loading {
@@ -34,4 +20,31 @@ h1{
     display: none;
     background: url(/static/loading.gif) no-repeat;
     cursor: wait;
+ }
+
+p{
+	text-align: center;
+	vertical-align: middle;
+}
+
+ #wrapper {
+ 	min-height:100%;
+ 	position:relative;
+ }
+ #header {
+ 	background:#ededed;
+ 	padding:10px;
+ }
+ #content {
+	transform: translateX(50%);
+ 	padding-bottom:100px; /* Height of the footer element */
+	background: linear-gradient(#4b6cb7 , #182848); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ }
+ #footer {
+ 	background:#ffab62;
+ 	width:100%;
+ 	height:100px;
+ 	position:absolute;
+ 	bottom:0;
+ 	left:0;
  }
