@@ -1,19 +1,17 @@
 body {
-	font-family: 'Roboto Light', sans;
+	font-family: 'Roboto', sans;
 	font-weight: 200;
   color: white;
 	background: #4b6cb7; /* fallback for old browsers */
 	background: linear-gradient(to bottom, #4b6cb7 , #182848); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-
-
 a, h1, h2{
 	color: #ffffff;
 }
 
 h1{
-	font-family: 'Roboto Bold', serif;
+	font-family: 'Roboto', sans;
 	margin: 0;
 }
 
