@@ -1,6 +1,7 @@
 html,
 body {
  font-family: 'Roboto', sans;
+ font-size: 24pxpx;
  background: linear-gradient(#4b6cb7 , #182848); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
  font-weight: 200;
  color: white;
@@ -42,12 +43,13 @@ p{
  }
 
  #footer {
- 	background:#ffab62;
+ 	background:#333333;
  	width:100%;
  	height:100px;
  	position:absolute;
  	bottom:0;
  	left:0;
+  font-size: 20px;
  }
 
 #card{
@@ -65,7 +67,6 @@ p{
 }
 
 #centered{
-  text-align: left !important;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -73,10 +74,26 @@ p{
   transform: translate(-50%, -50%);
 }
 
-button {
-  color: #FFF;
+input[type=submit] {
+  color: #ffffff;
   text-align: center;
-  font-size: 24px;
-  background-color: #ffffff;
-  font-weight: bold;
+  font-size: 14px;
+  padding: 6px 12px 6px 12px;
+  background-color: #4b6cb7;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 4px 4px 10px !important;
+}
+
+input[type=text]{
+  font-size: 14px;
+  border-top: 2px;
+  border-left: 2px;
+  border-right: 2px;
+  color: #4b6cb7;
+}
+
+#textual{
+  font-size: 36px;
+  text-align: left !important;
 }
