@@ -1,6 +1,7 @@
 html,
 body {
  font-family: 'Roboto', sans;
+ background: linear-gradient(#4b6cb7 , #182848); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
  font-weight: 200;
  color: white;
  margin:0;
@@ -35,11 +36,11 @@ p{
  	background:#ededed;
  	padding:10px;
  }
+
  #content {
-	transform: translateX(50%);
  	padding-bottom:100px; /* Height of the footer element */
-	background: linear-gradient(#4b6cb7 , #182848); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
  }
+
  #footer {
  	background:#ffab62;
  	width:100%;
@@ -48,3 +49,25 @@ p{
  	bottom:0;
  	left:0;
  }
+
+#card{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 400px;
+  border-radius: 4px;
+  background: #ffffff;
+  box-shadow:0 24px 24px 0 rgba(0,0,0,0.2),0 40px 77px 0 rgba(0,0,0,0.22) !important;
+
+}
+
+#centered{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
