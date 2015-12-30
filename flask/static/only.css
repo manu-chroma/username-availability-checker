@@ -1,0 +1,39 @@
+body {
+	font-family: 'Roboto Light', sans;
+	font-weight: 200;
+  color: white;
+	background: #4b6cb7; /* fallback for old browsers */
+	background: linear-gradient(to bottom, #4b6cb7 , #182848); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+
+
+a, h1, h2{
+	color: #ffffff;
+}
+
+h1{
+	font-family: 'Roboto Bold', serif;
+	margin: 0;
+}
+
+#Page {
+	top: 50%;
+	transform: translateY(50%);
+	text-align: left;
+}
+
+#fullpage {
+  background: linear-gradient(#4b6cb7 , #182848); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-size: 100% 100%;
+  height: 100%;
+  width: 100%;
+}
+
+div#loading {
+    width: 35px;
+    height: 35px;
+    display: none;
+    background: url(/static/loading.gif) no-repeat;
+    cursor: wait;
+ }
