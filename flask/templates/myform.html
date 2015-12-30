@@ -23,10 +23,13 @@
 
 <div id = "content">
   <div id="card">
+
+  		<img src="{{url_for('static', filename='cardbg.png')}}" width=100%>
+
     <div id="centered">
       <center>
-      <img src="{{url_for('static', filename='logo.png')}}" height="64" width="64">
-      <h1>username-availability-checker</h1><p>
+<!--      <img src="{{url_for('static', filename='logo.png')}}" height="64" width="64"> -->
+      <div id="textualbk">username-availability-checker</div><p>
       <form action="." method="POST">
       <input type="text" name="text">
       <input type="submit" name="my-form" value="CHECK" onclick="loading();">
