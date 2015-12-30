@@ -65,9 +65,18 @@ p{
 }
 
 #centered{
+  text-align: left !important;
   position: absolute;
   top: 50%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
+}
+
+button {
+  color: #FFF;
+  text-align: center;
+  font-size: 24px;
+  background-color: #ffffff;
+  font-weight: bold;
 }
