@@ -79,7 +79,7 @@ input[type=submit] {
   text-align: center;
   font-size: 14px;
   padding: 6px 12px 6px 12px;
-  background-color: #4b6cb7;
+  background: linear-gradient(#4b6cb7 , #182848); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   border: none;
   border-radius: 3px;
   box-shadow: 4px 4px 10px !important;
@@ -96,4 +96,8 @@ input[type=text]{
 #textual{
   font-size: 36px;
   text-align: left !important;
+}
+
+img{
+  padding-bottom: 20px;
 }

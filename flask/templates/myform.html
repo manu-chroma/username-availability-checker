@@ -24,10 +24,13 @@
 <div id = "content">
   <div id="card">
     <div id="centered">
-      <h1>Enter username : </h1><p>
+      <center>
+      <img src="{{url_for('static', filename='logo.png')}}" height="64" width="64">
+      <h1>username-availability-checker</h1><p>
       <form action="." method="POST">
       <input type="text" name="text">
       <input type="submit" name="my-form" value="CHECK" onclick="loading();">
+      </center>
     </div>
   </div>
 </div>
