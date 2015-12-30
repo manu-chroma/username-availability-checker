@@ -9,11 +9,26 @@
 	<title>Hello from flask</title>
 </head>
 <body>
-<div id="Page">
-	<h1> {{username}} </h1><p>
-	<i class="fa fa-facebook-official"></i>  {{fr}}<p>
-	<i class="fa fa-instagram"></i>  {{ir}}<p>
-	<i class="fa fa-twitter"></i> {{tr}}<p>
-</div>
+
+	<div id="wrapper">
+
+		<div id="header">
+			<h1> {{username}} </h1><p>
+		</div><!-- #header -->
+
+		<div id="content">
+		<div id="centered">
+
+		<p>	<i class="fa fa-facebook-official"></i>  {{fr}}</p>
+		<p>	<i class="fa fa-instagram"></i>  {{ir}}</p>
+		<p>	<i class="fa fa-twitter"></i> {{tr}}</p>
+		</div><!-- #content -->
+		</div>
+		<div id="footer">
+					<p>	Made by Manvendra Singh and Gyan Lakhwani </p>
+		</div><!-- #footer -->
+
+	</div><!-- #wrapper -->
+
 </body>
 </html>
