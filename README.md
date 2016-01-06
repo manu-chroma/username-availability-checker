@@ -21,7 +21,7 @@ python flask_backend.py //for lauching the Website
 
 Thanks to [Rohan](https://github.com/rhnvrm) for helping in calling API asynchronously using from the html file.
 
-##LISENCE
+##License
 ```
 MIT
 ```
