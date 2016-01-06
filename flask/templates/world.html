@@ -1,44 +1,96 @@
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
 
-		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:200">
-		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='only.css')}}"/>
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='only.css')}}"/>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="{{url_for('static', filename='font-awesome/css/font-awesome.min.css')}}"/>
+	<link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='favicon16.png') }}"/>
+	<title>Hello from flask</title>
 
 
-		<link rel="stylesheet" href="{{url_for('static', filename='font-awesome/css/font-awesome.min.css')}} "/>
+	<script type="text/javascript"> 
+		var sites = ["facebook.com", "twitter.com", "instagram.com", "github.com", "soundcloud.com"];
+		var sites2 = ["facebook", "twitter", "instagram", "github", "soundcloud"];
+		var num_sites = sites.length;
 
-		<link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='favicon16.png') }}"/>
-		<title>Hello from flask</title>
-	</head>
+		function request_api (site) {
+			$.ajax({
+				dataType: "json",
+				url:'http://127.0.0.1:5000/check/'+sites[site]+'/{{username}}',
+				dataType: 'application/json',
+				complete: function(data) {
+					if(JSON.parse(data.responseText).status == '404')
+						$("#"+sites2[site])[0].innerHTML= 'Available';
+					else 
+						$("#"+sites2[site])[0].innerHTML= 'Taken';
+				}
+			});
+		}
 
-<body>
+		function async(fn, callback) {
+			setTimeout(function() {
+				fn();
+				callback();
+			},0);
 
-<div id="wrapper">
+		}
 
-	<div id="header">
-		<h1>/{{username}} </h1><p>
-	</div><!-- #header -->
+		function async_loop(fn,i) {
+			if(i == -1)
+				return;
+			else {
+				fn(request_api(i),function() {});
+				async_loop(fn,--i);
+			}
+		}
+		function main() {
+			async_loop(async,num_sites-1);
+		// async(request_api(sites[0]),function() {});
+		// async(request_api(sites[1]),function() {});
+		// async(request_api(sites[2]),function() {});
+		// async(request_api(sites[3]),function() {});
+		// async(request_api(sites[4]),function() {});
+		// async(request_api(sites[5]),function() {});
+		
+	}
 
-	<div id="content">
-		<div id="centered">
-			<div id="textual">
+</script>
+</head>
 
-			<p>	<i class="fa fa-facebook-official"></i>  {{fr}}</p>
-			<p>	<i class="fa fa-instagram"></i>  {{ir}}</p>
-			<p>	<i class="fa fa-twitter"></i> {{tr}}</p>
+<body onload="main();">
+
+
+	<div id="wrapper">
+
+		<div id="header">
+			<h1>{{username}} </h1><p>
+		</div><!-- #header -->
+
+		<div id="content">
+			<div id="centered">
+				<div id="textual">
+
+					<p>	<i class="fa fa-facebook-official"></i> <span id='facebook'><i height = "50%"class="fa fa-cog fa-spin"></i></span></p>
+					<p>	<i class="fa fa-instagram"></i>  <span id='instagram'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
+					<p>	<i class="fa fa-github"></i> <span id='github'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
+					<p>	<i class="fa fa-twitter"></i> <span id='twitter'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
+					<p>	<i class="fa fa-soundcloud"></i> <span id='soundcloud'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
+				</div>
+
+			</div><!-- #content -->
+		</div>
+
+		<div id="footer">
+			<div id="centered">
+				<p>	Made by based Manu and material Gyan </p>
 			</div>
+		</div><!-- #footer -->
 
-		</div><!-- #content -->
-	</div>
-
-	<div id="footer">
-		<div id="centered">
-		<p>	Made by Manvendra Singh and Gyan Lakhwani </p>
-	</div>
-	</div><!-- #footer -->
-
-</div><!-- #wrapper -->
+	</div><!-- #wrapper -->
 
 </body>
 </html>
