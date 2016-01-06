@@ -23,5 +23,5 @@ Thanks to [Rohan](https://github.com/rhnvrm) for helping in calling API asynchro
 
 ##License
 ```
-MIT
+&copy; MIT
 ```
