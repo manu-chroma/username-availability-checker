@@ -2,24 +2,26 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript">// <![CDATA[
+<!-- <script type="text/javascript">// <![CDATA[
         function loading(){
             $("#loading").show();
             $("#content").hide();
             $("body").css("background-image", "url('/static/blobb.gif')");
 
         }
-// ]]></script>
-<script src="{{ url_for('static', filename='alert.js') }}"></script>
+// ]]></script> 
+
+<script src="{{ url_for('static', filename='alert.js') }}"></script> !-->
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='only.css')}}"/>
-<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:200">
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto">
 
 <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='favicon16.png') }}"/>
 	<title>Hello from flask</title>
 </head>
 <body>
-
-<div id="loading"></div>
+<span id = "animations " style = "display: block;" class>
+<h1 class = "title" >YOLOOOO</h1>
+</span>
 
 <div id = "content">
   <div id="card">
@@ -28,11 +30,10 @@
 
     <div id="centered">
       <center>
-<!--      <img src="{{url_for('static', filename='logo.png')}}" height="64" width="64"> -->
       <div id="textualbk">username-availability-checker</div><p>
       <form action="." method="POST">
       <input type="text" name="text">
-      <input type="submit" name="my-form" value="CHECK" onclick="loading();">
+      <input type="submit" name="my-form" value="CHECK" >
       </center>
     </div>
   </div>
