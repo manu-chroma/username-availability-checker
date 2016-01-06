@@ -23,7 +23,8 @@
 				url:'http://127.0.0.1:5000/check/'+sites[site]+'/{{username}}',
 				dataType: 'application/json',
 				complete: function(data) {
-					if(JSON.parse(data.responseText).status == '404')
+					var code = JSON.parse(data.responseText).status
+					if( code == '404' || code == '301')
 						$("#"+sites2[site])[0].innerHTML= 'Available';
 					else 
 						$("#"+sites2[site])[0].innerHTML= 'Taken';
