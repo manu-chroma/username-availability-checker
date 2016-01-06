@@ -13,44 +13,63 @@ body {
 h1{
 	font-family: 'Roboto', sans;
 	padding-left: 25px;
-	color: #333333;
+	color: #f35626;
+  background-image: -webkit-linear-gradient(92deg,#f35626,#feab3a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: hue 15s infinite linear;
 }
 
+.title {
+  
+}
+
+@-webkit-keyframes hue {
+  from {
+    -webkit-filter: hue-rotate(0deg);
+  }
+
+  to {
+    -webkit-filter: hue-rotate(-360deg);
+  }
+}
+
+
 #loading {
-    width: 35px;
-    height: 35px;
-    display: none;
-    background: url(/static/loading.gif) no-repeat;
-    cursor: wait;
- }
+  width: 35px;
+  height: 35px;
+  display: none;
+  background: url(/static/loading.gif) no-repeat;
+  cursor: wait;
+}
 
 p{
 	text-align: center;
 	vertical-align: middle;
 }
 
- #wrapper {
- 	min-height:100%;
- 	position:relative;
- }
- #header {
- 	background:#ededed;
- 	padding:10px;
- }
+#wrapper {
+  min-height:100%;
+  position:relative;
+}
+#header {
+  background:#ededed;
+  padding:10px;
+}
 
- #content {
- 	padding-bottom:70px; /* Height of the footer element */
- }
+#content {
+  padding-bottom:70px; /* Height of the footer element */
+}
 
- #footer {
- 	background:#333333;
- 	width:100%;
- 	height:70px;
- 	position:absolute;
- 	bottom:0;
- 	left:0;
+#footer {
+  background:#333333;
+  width:100%;
+  height:70px;
+  position:absolute;
+  bottom:0;
+  left:0;
   font-size: 20px;
- }
+}
 
 #card{
   position: absolute;
