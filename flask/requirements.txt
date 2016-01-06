@@ -1,0 +1,4 @@
+Flask==0.10.1
+Flask-Cors==2.1.2
+requests==2.9.1
+termcolor==1.1.0
