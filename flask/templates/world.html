@@ -12,7 +12,7 @@
 	<title>Hello from flask</title>
 
 
-	<script type="text/javascript"> 
+	<script type="text/javascript">
 		var sites = ["facebook.com", "twitter.com", "instagram.com", "github.com", "soundcloud.com"];
 		var sites2 = ["facebook", "twitter", "instagram", "github", "soundcloud"];
 		var num_sites = sites.length;
@@ -26,7 +26,7 @@
 					var code = JSON.parse(data.responseText).status
 					if( code == '404' || code == '301')
 						$("#"+sites2[site])[0].innerHTML= 'Available';
-					else 
+					else
 						$("#"+sites2[site])[0].innerHTML= 'Taken';
 				}
 			});
@@ -39,7 +39,7 @@
 			},0);
 
 		}
-		//recursive calls 
+		//recursive calls
 		function async_loop(fn,i) {
 			if(i == -1)
 				return;
@@ -50,7 +50,7 @@
 		}
 		function main() {
 			async_loop(async,num_sites-1);
-			
+
 		}
 
 	</script>
@@ -60,6 +60,7 @@
 
 
 	<div id="wrapper">
+		<a href="https://github.com/gyanl/username-availability-checker"><img style="position: absolute; top: 0; right: 0; border: 0; width : 149px; height : 149px;" src="{{url_for('static', filename='forkme@2x.png')}}"" alt="Fork me on GitHub"></a>
 
 		<div id="header">
 			<h1>{{username}} </h1><p>
@@ -81,7 +82,7 @@
 
 		<div id="footer">
 			<div id="centered">
-				<p>	Made by based Manu and material Gyan </p>
+				<p>	Made by Manvendra Singh and Gyan Lakhwani</p>
 			</div>
 		</div><!-- #footer -->
 
