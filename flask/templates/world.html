@@ -23,7 +23,8 @@
 				url:'http://127.0.0.1:5000/check/'+sites[site]+'/{{username}}',
 				dataType: 'application/json',
 				complete: function(data) {
-					if(JSON.parse(data.responseText).status == '404')
+					var code = JSON.parse(data.responseText).status
+					if( code == '404' || code == '301')
 						$("#"+sites2[site])[0].innerHTML= 'Available';
 					else 
 						$("#"+sites2[site])[0].innerHTML= 'Taken';
@@ -38,7 +39,7 @@
 			},0);
 
 		}
-
+		//recursive calls 
 		function async_loop(fn,i) {
 			if(i == -1)
 				return;
@@ -49,16 +50,10 @@
 		}
 		function main() {
 			async_loop(async,num_sites-1);
-		// async(request_api(sites[0]),function() {});
-		// async(request_api(sites[1]),function() {});
-		// async(request_api(sites[2]),function() {});
-		// async(request_api(sites[3]),function() {});
-		// async(request_api(sites[4]),function() {});
-		// async(request_api(sites[5]),function() {});
-		
-	}
+			
+		}
 
-</script>
+	</script>
 </head>
 
 <body onload="main();">
