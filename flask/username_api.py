@@ -13,4 +13,4 @@ def check_username(website,username):
 	return jsonify({'status' : requests.get("http://"+website+"/"+username).status_code})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=8521)

@@ -20,5 +20,5 @@ def my_form_post():
 	return render_template('world.html', username = username)
 
 if __name__ == "__main__":
-	app.run(debug=True, port=8080)
+	app.run(port=8522)
 	logging.getLogger('flask_cors').level = logging.DEBUG
