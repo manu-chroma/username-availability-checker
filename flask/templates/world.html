@@ -20,7 +20,7 @@
 		function request_api (site) {
 			$.ajax({
 				dataType: "json",
-				url:'http://rohanverma.net/check/'+sites[site]+'/{{username}}',
+				url:'http://rohanverma.net:8521/check/'+sites[site]+'/{{username}}',
 				dataType: 'application/json',
 				complete: function(data) {
 					var code = JSON.parse(data.responseText).status
