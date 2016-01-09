@@ -1,5 +1,6 @@
 # username-availability-checker
 A small project by [Gyan Lakhwani](https://github.com/gyanl) and [Manvendra Singh](https://github.com/manu-chroma).
+Hosted on https://username-check.herokuapp.com/
 
 ##Install Dependencies using Pip
 ```
