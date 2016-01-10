@@ -1,5 +1,5 @@
 # username-availability-checker
-A small project by [Gyan Lakhwani](https://github.com/gyanl) and [Manvendra Singh](https://github.com/manu-chroma).
+A web app by [Gyan Lakhwani](https://github.com/gyanl) and [Manvendra Singh](https://github.com/manu-chroma) to check if a username is taken on Facebook, Twitter, Instagram, Soundcloud & Github. 
 Hosted on https://username-check.herokuapp.com/
 
 ##Install Dependencies using Pip
