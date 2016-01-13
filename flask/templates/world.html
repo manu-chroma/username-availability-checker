@@ -16,6 +16,11 @@
 	<title>Hello from flask</title>
 
 
+	<!-- including bootsrap files -->
+	<script src="{{url_for('static',filename='bootstrap/bootstrap.min.js')}}"></script>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='bootstrap/bootstrap.min.css')}}"/>
+
+
 	<script type="text/javascript">
 		var sites = ["facebook.com", "twitter.com", "instagram.com", "github.com", "soundcloud.com"];
 		var sites2 = ["facebook", "twitter", "instagram", "github", "soundcloud"];
@@ -59,7 +64,7 @@
 
 	</script>
 </head>
-
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <body onload="main();">
 
 
@@ -70,6 +75,7 @@
 			<h1>{{username}} </h1><p>
 		</div><!-- #header -->
 
+		<div class='container-fluid'>
 		<div id="content">
 			<div id="centered">
 				<div id="textual">
@@ -82,6 +88,7 @@
 				</div>
 
 			</div><!-- #content -->
+		</div>
 		</div>
 
 		<div id="footer">
