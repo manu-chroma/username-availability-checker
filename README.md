@@ -1,10 +1,12 @@
 # username-availability-checker
 A web app by [Gyan Lakhwani](https://github.com/gyanl) and [Manvendra Singh](https://github.com/manu-chroma) to check if a username is taken on Facebook, Twitter, Instagram, Soundcloud & Github.  
 Hosted on https://username-check.herokuapp.com/   
+
+##API
 API hosted on https://username-availabilty.herokuapp.com/   
 How to query API: ```https://username-availabilty.herokuapp.com/check/<website name>.com/<username>/  ```   
 eg: https://username-availabilty.herokuapp.com/check/facebook.com/yolo 
-   
+
 ##Install Dependencies using Pip
 ```
 pip install -r requirements.txt
