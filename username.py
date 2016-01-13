@@ -7,7 +7,7 @@ import requests
 from termcolor import colored
 
 username = raw_input("Enter the username : ")
-sites = ["facebook", "twitter", "instagram", "github", "youtube", "soundcloud"]
+sites = ["facebook", "twitter", "instagram", "github", "youtube", "soundcloud", "tumblr"]
 
 def check(status_code):
 	if(status_code == 404):
@@ -17,8 +17,12 @@ def check(status_code):
 
 
 for i, val in enumerate(sites):
-	a = requests.get("https://"+sites[i]+".com/"+username)
-	print "https://"+sites[i]+".com/"+username
+	if(sites[i] == 'tumblr'):
+		a = requests.get("https://"+username+'.'+sites[i]+".com/") 
+		print "https://"+username+'.'+sites[i]+".com/"
+	else:	
+		a = requests.get("https://"+sites[i]+".com/"+username)
+		print "https://"+sites[i]+".com/"+username
 	check(a.status_code)
 
 
