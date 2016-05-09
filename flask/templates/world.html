@@ -6,7 +6,7 @@
 	<meta property="og:title"              content="Username Availability Checker" />
 	<meta property="og:description"        content="Find a unique username for teh interwebz" />
 	<meta property="og:image"              content=""{{url_for('static', filename='fb-og.png')}}"" />
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
 	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='only.css')}}"/>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -29,7 +29,7 @@
 		function request_api (site) {
 			$.ajax({
 				dataType: "json",
-				url:'http://rohanverma.net:8521/check/'+sites[site]+'/{{username}}',
+				url:'https://username-availabilty.herokuapp.com:8521/check/'+sites[site]+'/{{username}}',
 				dataType: 'application/json',
 				complete: function(data) {
 					var code = JSON.parse(data.responseText).status

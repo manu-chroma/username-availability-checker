@@ -25,8 +25,6 @@ python username_api.py #for launching API
 python flask_backend.py #for launching the Website
 ```
 
-Thanks to [Rohan](https://github.com/rhnvrm) for help with calling the API asynchronously from the html file.
-
 ##License
 ```
 © MIT
