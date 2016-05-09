@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta property="og:url"                content="https://username-check.herokuapp.com/" />
 	<meta property="og:type"               content="website" />
 	<meta property="og:title"              content="Username Availability Checker" />
@@ -14,12 +15,6 @@
 	<link rel="stylesheet" href="{{url_for('static', filename='font-awesome/css/font-awesome.min.css')}}"/>
 	<link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='favicon32.png') }}"/>
 	<title>Hello from flask</title>
-
-
-	<!-- including bootsrap files -->
-	<script src="{{url_for('static',filename='bootstrap/bootstrap.min.js')}}"></script>
-	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='bootstrap/bootstrap.min.css')}}"/>
-
 
 	<script type="text/javascript">
 		var sites = ["facebook.com", "twitter.com", "instagram.com", "github.com", "soundcloud.com", "pinterest.com", "tumblr.com"];
@@ -75,25 +70,49 @@
 			<h1>{{username}} </h1><p>
 		</div><!-- #header -->
 
-		<div class='container-fluid'>
 		<div id="content">
 			<div id="centered">
 				<div id="textual">
-
+<div class="helper">
+	<center>
+					<div class="card">
 					<p>	<i class="fa fa-facebook-official"></i> <span id='facebook'><i height = "50%"class="fa fa-circle-o-notch fa-spin"></i></span></p>
-					<p>	<i class="fa fa-instagram"></i>  <span id='instagram'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
-					<p>	<i class="fa fa-github"></i> <span id='github'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
-					<p>	<i class="fa fa-twitter"></i> <span id='twitter'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
-					<p>	<i class="fa fa-soundcloud"></i> <span id='soundcloud'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
-					<p>	<i class="fa fa-pinterest"></i> <span id='pinterest'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
-					<p>	<i class="fa fa-tumblr"></i> <span id='tumblr'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
 				</div>
+<div class="card">
+	<p>	<i class="fa fa-instagram"></i>  <span id='instagram'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
+</div>
 
+<div class="card">
+	<p>	<i class="fa fa-github"></i> <span id='github'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
+
+</div>
+
+<div class="card">
+	<p>	<i class="fa fa-twitter"></i> <span id='twitter'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
+
+</div>
+
+<div class="card">
+	<p>	<i class="fa fa-soundcloud"></i> <span id='soundcloud'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
+
+</div>
+
+<div class="card">
+	<p>	<i class="fa fa-pinterest"></i> <span id='pinterest'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
+
+</div>
+
+<div class="card">
+	<p>	<i class="fa fa-tumblr"></i> <span id='tumblr'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
+</div>
+</div>
+
+				</div>
+</center>
 			</div><!-- #content -->
 		</div>
-		</div>
 
-		<div id="footer">
+		<div class="footer">
 			<div id="centered">
 				<p>	Made by Manvendra Singh and Gyan Lakhwani</p>
 			</div>
