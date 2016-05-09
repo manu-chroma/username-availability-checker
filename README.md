@@ -22,7 +22,7 @@ Both commands must be running for the app to function. Open the address generate
 ```
 cd flask
 python username_api.py #for launching API
-python flask_backend.py #for launching the Website
+python flask_frontend.py #for launching the Website
 ```
 
 ##License
