@@ -7,24 +7,23 @@ import requests
 from termcolor import colored
 
 username = raw_input("Enter the username : ")
-sites = ["facebook", "twitter", "instagram", "github", "youtube", "soundcloud", "tumblr"]
+sites = "facebook twitter instagram github youtube soundcloud tumblr".split()
+
 
 def check(status_code):
-	if(status_code == 404):
-		print colored('Available', 'green')
+	if status_code == 404:
+		print(colored('Available', 'green'))
 	else: 
-		print colored('Taken', 'red')
+		print(colored('Taken', 'red'))
 
 
-for i, val in enumerate(sites):
-	if(sites[i] == 'tumblr'):
-		a = requests.get("https://"+username+'.'+sites[i]+".com/") 
-		print "https://"+username+'.'+sites[i]+".com/"
+for site in sites:
+	if site == 'tumblr':
+		url = "https://{}.{}.com/".format(username, site)
 	else:	
-		a = requests.get("https://"+sites[i]+".com/"+username)
-		print "https://"+sites[i]+".com/"+username
-	check(a.status_code)
-
+		url = "https://{}.com/{}".format(site, username)
+	print(url)
+	check(requests.get(url).status_code)
 
 
 
