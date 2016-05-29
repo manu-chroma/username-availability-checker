@@ -11,7 +11,7 @@ sites = "facebook twitter instagram github youtube soundcloud tumblr".split()
 
 
 def check(status_code):
-	if(status_code == 404):
+	if status_code == 404:
 		print(colored('Available', 'green'))
 	else: 
 		print(colored('Taken', 'red'))
