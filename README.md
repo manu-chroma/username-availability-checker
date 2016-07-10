@@ -7,22 +7,24 @@ API hosted on https://username-availabilty.herokuapp.com/
 How to query API: ```https://username-availabilty.herokuapp.com/check/<website name>.com/<username>/  ```   
 eg: https://username-availabilty.herokuapp.com/check/facebook.com/yolo 
 
-##Install Dependencies using Pip
+## SETUP
+
+###Install Dependencies using Pip
 ```
 pip install -r requirements.txt
 ```
 
-##Running script in terminal/command prompt
+###Running script in terminal/command prompt
 ```
 python username.py
 ```
 
-##Running the web app
+###Running the web app
 Both commands must be running for the app to function. Open the address generated when you run flask_backend.py in a browser to use.
-```
+```bash
 cd flask
-python username_api.py #for launching API
-python flask_frontend.py #for launching the Website
+python username_api.py // for launching API
+python flask_frontend.py // for launching the Website
 ```
 
 ##License
