@@ -8,13 +8,17 @@
     <meta property="og:title" content="Username Availability Checker" />
     <meta property="og:description" content="Find a unique username for teh interwebz" />
     <meta property="og:image" content="" {{url_for( 'static', filename='fb-og.png' )}} "" />
+
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='only.css')}}" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <link rel="stylesheet" href="{{url_for('static', filename='font-awesome/css/font-awesome.min.css')}}" />
     <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='favicon32.png') }}" />
+    
     <title>Hello from flask</title>
-    <script type="text/javascript">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+    
     var sites = ["facebook.com", "twitter.com", "instagram.com", "github.com", "soundcloud.com", "pinterest.com", "tumblr.com"];
     var sites2 = ["facebook", "twitter", "instagram", "github", "soundcloud", "pinterest", "tumblr"];
     var num_sites = sites.length;
@@ -22,7 +26,7 @@
     function request_api(site) {
         $.ajax({
             dataType: "json",
-            url: 'https://username-availabilty.herokuapp.com:8521/check/' + sites[site] + '/{{username}}',
+            url: 'https://username-availabilty.herokuapp.com/check/' + sites[site] + '/{{username}}',
             dataType: 'application/json',
             complete: function(data) {
                 var code = JSON.parse(data.responseText).status
@@ -34,9 +38,8 @@
         });
     }
 
-    function async(fn, callback) {
+    function async (fn, callback)  {
         setTimeout(function() {
-            fn();
             callback();
         }, 0);
 
