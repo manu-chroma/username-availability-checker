@@ -123,7 +123,8 @@ p
   position:relative;
 }
 
-input[type=submit]
+input[type=submit],
+button[type=submit]
 {
   color:#fff;
   text-align:center;
@@ -163,6 +164,12 @@ input:focus,textarea:focus,button:focus
   color:#182848;
   font-size:36px;
   text-align:center;
+}
+
+.tip
+{
+  color: #333;
+  font-size: 12px;
 }
 
 img
