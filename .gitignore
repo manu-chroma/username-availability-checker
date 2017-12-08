@@ -2,3 +2,8 @@ flask/templates/front.html
 *.sketch
 
 *.sketch
+venv3/*
+
+.cache/
+__pycache__/
+
