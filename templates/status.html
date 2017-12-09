@@ -22,21 +22,20 @@
     
     <script>
         // @todo: re-write this logic
-        var sites = ["facebook.com", "twitter.com", "instagram.com", "github.com", "soundcloud.com", "pinterest.com", "tumblr.com"];
-        var sites2 = ["facebook", "twitter", "instagram", "github", "soundcloud", "pinterest", "tumblr"];
+        var sites = ["facebook", "twitter", "instagram", "github", "soundcloud", "pinterest", "tumblr"];
         var num_sites = sites.length;
 
         function request_api(site) {
             $.ajax({
                 dataType: 'json',
-                url     : 'https://username-availabilty.herokuapp.com/check/' + sites[site] + '/{{username}}',
+                url     : 'http://localhost:8521/check/' + sites[site] + '/{{username}}',
                 dataType: 'application/json',
                 complete: function(data) {
                     var code = JSON.parse(data.responseText).status
                     if (code == '404' || code == '301')
-                        $("#" + sites2[site])[0].innerHTML = 'Available';
+                        $("#" + sites[site])[0].innerHTML = 'Available';
                     else
-                        $("#" + sites2[site])[0].innerHTML = 'Taken';
+                        $("#" + sites[site])[0].innerHTML = 'Taken';
                 }
             });
         }
