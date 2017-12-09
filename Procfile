@@ -1,0 +1,1 @@
+web: gunicorn frontend:app --log-file -
