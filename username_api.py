@@ -9,19 +9,20 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 def check_username(website, username):
-	if website == 'pinterest.com':
-		url  = 'https://in.{}/{}/'.format(website, username)
+	if website == 'pinterest':
+		url  = 'https://in.{}.com/{}/'.format(website, username)
 		res  = r.get(url)
 		code = 404 if len(res.history) else 200
 
+		print('Url: {}'.format(url), file=sys.stderr)
 		print('Code: {}'.format(code), file=sys.stderr)
 
 		return {'status': code}
 
-	elif website == 'tumblr.com':
-		url = 'https://{}.{}'.format(username, website)
+	elif website == 'tumblr':
+		url = 'https://{}.{}.com'.format(username, website)
 	else:
-		url = 'http://{}/{}'.format(website, username)
+		url = 'http://{}.com/{}'.format(website, username)
 	
 	return {'status': r.get(url).status_code}
 
