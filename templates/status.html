@@ -22,13 +22,13 @@
     
     <script>
         // @todo: re-write this logic
-        var sites = ["facebook", "twitter", "instagram", "github", "soundcloud", "pinterest", "tumblr"];
+        var sites = ["facebook", "twitter", "instagram", "github", "soundcloud", "pinterest", "tumblr", "behance"];
         var num_sites = sites.length;
 
         function request_api(site) {
             $.ajax({
                 dataType: 'json',
-                url     : 'http://localhost:8521/check/' + sites[site] + '/{{username}}',
+                url     : 'https://username-availabilty.herokuapp.com/check/' + sites[site] + '/{{username}}',
                 dataType: 'application/json',
                 complete: function(data) {
                     var code = JSON.parse(data.responseText).status
@@ -135,6 +135,9 @@
                             </div>
                             <div class="card">
                                 <p> <i class="fa fa-tumblr"></i> <span id='tumblr'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
+                            </div>
+                            <div class="card">
+                                <p> <i class="fa fa-behance"></i> <span id='behance'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
                             </div>
                         </div>
                     </div>
