@@ -18,11 +18,12 @@ def check_username(website, username):
 		print('Code: {}'.format(code), file=sys.stderr)
 
 		return {'status': code}
-
 	elif website == 'tumblr':
 		url = 'https://{}.{}.com'.format(username, website)
+	elif website == 'behance':
+		url = 'https://{}.net/{}'.format(website, username)
 	else:
-		url = 'http://{}.com/{}'.format(website, username)
+		url = 'https://{}.com/{}'.format(website, username)
 	
 	return {'status': r.get(url).status_code}
 
