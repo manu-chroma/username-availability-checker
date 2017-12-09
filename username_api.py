@@ -1,18 +1,29 @@
 from flask import Flask, jsonify
 from flask.ext.cors import CORS, cross_origin
-import requests
+import requests as r
+
+import sys
 
 app = Flask(__name__)
 cors = CORS(app) 
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 def check_username(website, username):
-	if website == 'tumblr.com':
+	if website == 'pinterest.com':
+		url  = 'https://in.{}/{}/'.format(website, username)
+		res  = r.get(url)
+		code = 404 if len(res.history) else 200
+
+		print('Code: {}'.format(code), file=sys.stderr)
+
+		return {'status': code}
+
+	elif website == 'tumblr.com':
 		url = 'https://{}.{}'.format(username, website)
 	else:
 		url = 'http://{}/{}'.format(website, username)
 	
-	return {'status' : requests.get(url).status_code}
+	return {'status': r.get(url).status_code}
 
 # API endpoints
 @app.route('/')
