@@ -12,12 +12,11 @@ def check_username(website, username):
 	if website == 'pinterest':
 		url  = 'https://in.{}.com/{}/'.format(website, username)
 		res  = r.get(url)
-		code = 404 if len(res.history) else 200
+		code = 200 if bytes(username, encoding='utf-8') in res.content \
+			else 404
 
-		print('Url: {}'.format(url), file=sys.stderr)
-		print('Code: {}'.format(code), file=sys.stderr)
+		return {'status': code, 'url': url}
 
-		return {'status': code}
 	elif website == 'tumblr':
 		url = 'https://{}.{}.com'.format(username, website)
 	elif website == 'behance':
@@ -25,7 +24,7 @@ def check_username(website, username):
 	else:
 		url = 'https://{}.com/{}'.format(website, username)
 	
-	return {'status': r.get(url).status_code}
+	return {'status': r.get(url).status_code, 'url': url}
 
 # API endpoints
 @app.route('/')
