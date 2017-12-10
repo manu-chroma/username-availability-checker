@@ -7,12 +7,14 @@ html,body
   color:#FFF;
   height:100%;
   margin:0;
+  margin-bottom:50px;
 }
 
 .helper
 {
   max-width:80%;
   margin:auto;
+  text-align: center;
 }
 
 .card
@@ -86,7 +88,7 @@ p
   right:0;
   color:#fff;
   height:auto;
-  position:absolute;
+  position:fixed;
   bottom:0;
   left:0;
   text-align:center;

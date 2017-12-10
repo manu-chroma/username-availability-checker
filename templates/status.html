@@ -35,18 +35,26 @@
                     $("#" + site)[0].innerHTML = `<a href="${res['url']}" target="_blank">Taken</a>`;
             })
             .fail(() => {
-                 $("#" + site)[0].innerHTML = 'Don\'t know';
-            });
+             $("#" + site)[0].innerHTML = 'Don\'t know';
+         });
         }
 
         async function main ()  {
             var sites = ["twitter", "instagram", "github", "soundcloud", "pinterest", "tumblr", "behance"];
-            var num_sites = sites.length;    
+            var num_sites = sites.length;
+
+            // create cards dynamically for each of the websites
+            sites.forEach(website => {
+               $(".helper").append(`<div class="card">
+                <p> <i class="fa fa-${website}"></i> <span id='${website}'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
+                </div>`)
+            });
+
             // iterate over all the websites and call 
             // call request_api each of the wesbite
-            for(var i = 0; i < num_sites; i++) {
-                request_api(sites[i]);
-            };
+            sites.forEach(website => {
+                request_api(website);
+            });
         }
     </script>
 </head>
@@ -95,49 +103,29 @@
     
     <div id="header">
         <h1>{{username}} </h1>
-        <p>
-        </div>
-        <!-- #header -->
-        <div id="content">
-            <div id="centered">
-                <div id="textual">
-                    <div class="helper">
-                        <center>
-                            <div class="card">
-                                <p> <i class="fa fa-instagram"></i> <span id='instagram'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
-                            </div>
-                            <div class="card">
-                                <p> <i class="fa fa-github"></i> <span id='github'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
-                            </div>
-                            <div class="card">
-                                <p> <i class="fa fa-twitter"></i> <span id='twitter'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
-                            </div>
-                            <div class="card">
-                                <p> <i class="fa fa-soundcloud"></i> <span id='soundcloud'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
-                            </div>
-                            <div class="card">
-                                <p> <i class="fa fa-pinterest"></i> <span id='pinterest'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
-                            </div>
-                            <div class="card">
-                                <p> <i class="fa fa-tumblr"></i> <span id='tumblr'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
-                            </div>
-                            <div class="card">
-                                <p> <i class="fa fa-behance"></i> <span id='behance'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
-                            </div>
-                        </div>
-                    </div>
-                </center>
-            </div>
-            <!-- #content -->
-        </div>
-        <div class="footer">
-            <div id="centered">
-                <p>Made by Manvendra Singh and Gyan Lakhwani</p>
-            </div>
-        </div>
-        <!-- #footer -->
+        <br>
     </div>
-    <!-- #wrapper -->
+    <!-- header -->
+
+    <div id="content">
+        <div id="centered">
+            <div id="textual">
+                <div class="helper">
+                    <!-- dynamically insert cards here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div id="centered">
+        <p>Made by Manvendra Singh and Gyan Lakhwani</p>
+    </div>
+</div>
+<!-- #footer -->
+</div>
+<!-- #wrapper -->
 </body>
 
 </html>
