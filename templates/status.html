@@ -31,11 +31,11 @@
                 url     : 'https://username-availabilty.herokuapp.com/check/' + sites[site] + '/{{username}}',
                 dataType: 'application/json',
                 complete: function(data) {
-                    var code = JSON.parse(data.responseText).status
-                    if (code == '404' || code == '301')
+                    var res = JSON.parse(data.responseText)
+                    if (res['status'] == '404' || res['status'] == '301')
                         $("#" + sites[site])[0].innerHTML = 'Available';
                     else
-                        $("#" + sites[site])[0].innerHTML = 'Taken';
+                        $("#" + sites[site])[0].innerHTML = `<a href="${res['url']}" target="_blank">Taken</a>`;
                 }
             });
         }
