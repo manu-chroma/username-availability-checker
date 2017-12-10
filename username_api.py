@@ -9,22 +9,22 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 def check_username(website, username):
-	if website == 'pinterest':
-		url  = 'https://in.{}.com/{}/'.format(website, username)
+	url = {
+	'pinterest' :'https://in.{}.com/{}/'.format(website, username),
+	'gitlab'    :'https://{}.com/{}/'.format(website, username),
+	'tumblr'    :'https://{}.{}.com'.format(username, website),
+	'behance'   :'https://{}.net/{}'.format(website, username)
+	}.get(website, 'https://{}.com/{}'.format(website, username)) # default
+
+	if website in ['pinterest', 'gitlab']:
 		res  = r.get(url)
 		code = 200 if bytes(username, encoding='utf-8') in res.content \
 			else 404
 
 		return {'status': code, 'url': url}
-
-	elif website == 'tumblr':
-		url = 'https://{}.{}.com'.format(username, website)
-	elif website == 'behance':
-		url = 'https://{}.net/{}'.format(website, username)
-	else:
-		url = 'https://{}.com/{}'.format(website, username)
 	
-	return {'status': r.get(url).status_code, 'url': url}
+	else:
+		return {'status': r.get(url).status_code, 'url': url}
 
 # API endpoints
 @app.route('/')
