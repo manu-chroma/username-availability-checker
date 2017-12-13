@@ -8,9 +8,12 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 @cross_origin()
 def my_form():
+    username = request.args.get('username', '')
+    if username:
+        return render_template('status.html', username = username)
     return render_template("form.html")
 
 @app.route('/', methods=['POST'])
