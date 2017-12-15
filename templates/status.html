@@ -29,7 +29,9 @@
             })
             .then((result) => {
                 var res = result;
-                if (res['status'] == '404' || res['status'] == '301')
+                if (!res['possible'])
+                    $("#" + site)[0].innerHTML = 'Impossible';
+                else if (res['status'] == '404' || res['status'] == '301')
                     $("#" + site)[0].innerHTML = 'Available';
                 else
                     $("#" + site)[0].innerHTML = `<a href="${res['url']}" target="_blank">Taken</a>`;
