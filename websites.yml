@@ -1,0 +1,36 @@
+---
+username_patterns:
+  pinterest:
+    characters: a-zA-Z0-9_
+    min_length: 3
+    max_length: 15
+  gitlab:
+    characters: a-zA-Z0-9_.-
+    min_length: 1
+    max_length: 255
+  github:
+    characters: a-zA-Z0-9-
+    min_length: 1
+    max_length: 39
+    invalid_patterns:
+      - "-{2,}"
+  tumblr:
+    characters: a-zA-Z0-9-
+    min_length: 1
+    max_length: 32
+  behance:
+    characters: a-zA-Z0-9_-
+    min_length: 1
+    max_length: 30
+  instagram:
+    characters: a-zA-Z0-9_.
+    min_length: 1
+    max_length: 30
+  twitter:
+    characters: a-zA-Z0-9_
+    min_length: 5
+    max_length: 15
+  soundcloud:
+    characters: a-zA-Z0-9_-
+    min_length: 1
+    max_length: 25
