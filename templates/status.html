@@ -45,9 +45,9 @@
 
             // create cards dynamically for each of the websites
             sites.forEach(website => {
-               $(".helper").append(`<div class="card">
+              $(".helper").append(`<div class="tooltip"><div class="card">
                 <p> <i class="fa fa-${website}"></i> <span id='${website}'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
-                </div>`)
+                </div><span class="tooltiptext">${website}</span></div>`)
             });
 
             // iterate over all the websites and call 
