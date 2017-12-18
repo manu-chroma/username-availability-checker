@@ -1,0 +1,49 @@
+---
+github:
+  taken_usernames:
+    - "andrewda"
+    - "jlord"
+    - "cheshire137"
+    - "a-b-c"
+  available_usernames:
+    - "zNRe3jx3isA8CoM"
+gitlab:
+  taken_usernames:
+    - "andrewda"
+    - "nkprince007"
+    - "lifetimealone"
+  available_usernames:
+    - "zNRe3jx3isA8CoM"
+soundcloud:
+  taken_usernames:
+    - "g_eazy"
+    - "postmalone"
+  available_usernames:
+    - "zNRe3jx3isA8CoM"
+twitter:
+  taken_usernames:
+    - "BillGates"
+    - "ElonMusk"
+  available_usernames:
+    - "zNRe3jx3isA8CoM"
+instagram:
+  taken_usernames:
+    - "BillGates"
+    - "ElonMusk"
+  available_usernames:
+    - "zNRe3jx3isA8CoM"
+behance:
+  taken_usernames:
+    - "andrewda"
+  available_usernames:
+    - "zNRe3jx3isA8CoM"
+tumblr:
+  taken_usernames:
+    - "steve"
+  available_usernames:
+    - "zNRe3jx3isA8CoM"
+pinterest:
+  taken_usernames:
+    - "steve"
+  available_usernames:
+    - "zNRe3jx3isA8CoM"
