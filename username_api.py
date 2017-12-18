@@ -13,12 +13,10 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 patterns = yaml.load(open('websites.yml'))
 
 def check_username(website, username):
-	url = {
-	'pinterest' :'https://in.{}.com/{}/'.format(website, username),
-	'gitlab'    :'https://{}.com/{}/'.format(website, username),
-	'tumblr'    :'https://{}.{}.com'.format(username, website),
-	'behance'   :'https://{}.net/{}'.format(website, username)
-	}.get(website, 'https://{}.com/{}'.format(website, username)) # default
+	url = patterns['urls'].get(website, 'https://{w}.com/{u}').format(
+		w=website,
+		u=username
+	)
 
 	possible = check_format(website, username)
 

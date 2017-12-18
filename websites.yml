@@ -1,4 +1,8 @@
 ---
+urls:
+  behance: https://{w}.net/{u}
+  pinterest: https://in.{w}.com/{u}/
+  tumblr: https://{u}.{w}.com
 username_patterns:
   pinterest:
     characters: a-zA-Z0-9_
