@@ -44,24 +44,34 @@ html,body
 .tooltip {
   position: relative;
   display: inline-block;
+  border-bottom: 1px dotted black;
 }
 
 .tooltip .tooltiptext {
+  font-size: 50%;
   visibility: hidden;
-  width: 230px;
+  width: 120px;
   background-color: black;
   color: #fff;
   text-align: center;
-  padding: 5px 0;
   border-radius: 6px;
-
+  padding: 5px 0;
   position: absolute;
   z-index: 1;
-  bottom: 120%;
-  left: 50%;
-  margin-left: -115px;
+  top: -5px;
+  right: 110%;
 }
 
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent black;
+}
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }

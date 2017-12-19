@@ -47,10 +47,10 @@
 
             // create cards dynamically for each of the websites
             sites.forEach(website => {
-              $(".helper").append(`<div class="tooltip"><div class="card">
-                <p> <i class="fa fa-${website}"></i> <span id='${website}'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>
-                </div><span class="tooltiptext">${website}</span></div>`)
-            });
+              $(".helper").append(`<div class="card">
+                <p><div class="tooltip"><i class="fa fa-${website}"></i><span class="tooltiptext">${website}</span></div>
+                <span id='${website}'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>`)
+          });
 
             // iterate over all the websites and call 
             // call request_api each of the wesbite
