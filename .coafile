@@ -1,0 +1,41 @@
+[all]
+files = *.py, tests/*.py,
+max_line_length = 80
+use_spaces = True
+
+[all.whitespace]
+use_spaces = True
+bears = SpaceConsistencyBear
+default_actions = *: ApplyPatchAction
+
+[all.python]
+language = Python
+bears = QuotesBear
+preferred_quotation = '
+default_actions = *: ApplyPatchAction
+
+[all.autopep8]
+bears = PEP8Bear, PycodestyleBear
+default_actions = PEP8Bear: ApplyPatchAction
+
+[all.linelength]
+bears = LineLengthBear
+
+[all.links]
+bears = InvalidLinkBear
+
+[css]
+files = static/css/*.css
+bears = LineLengthBear, SpaceConsistencyBear
+use_spaces = true
+
+[html]
+files = templates/*.html
+bears = LineLengthBear, SpaceConsistencyBear
+use_spaces = true
+max_line_length = 100
+default_actions = *: ApplyPatchAction
+
+[yaml]
+files = *.yml
+bears = YAMLLintBear
