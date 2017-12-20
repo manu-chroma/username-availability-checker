@@ -1,7 +1,9 @@
 from flask import Flask, jsonify
 from flask.ext.cors import CORS, cross_origin
 import requests as r
+from bs4 import BeautifulSoup
 
+import os
 import sys
 import re
 import yaml
@@ -12,11 +14,56 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 patterns = yaml.load(open('websites.yml'))
 
-def check_username(website, username):
-	url = patterns['urls'].get(website, 'https://{w}.com/{u}').format(
+def get_profile_url(website, username):
+	return patterns['urls'].get(website, 'https://{w}.com/{u}').format(
 		w=website,
 		u=username
 	)
+
+def get_avatar(website, username):
+	data = patterns['avatar'][website]
+
+	if not data:
+		return None
+
+	url = get_profile_url(website, username)
+	if 'url' in data:
+		url = data['url'].format(u=username)
+
+	response = r.get(url)
+	if response.status_code == 404:
+		return None
+
+	if data == 'opengraph':
+		# Look in metadata for image.
+		soup = BeautifulSoup(response.text, 'html.parser')
+		result = [item.attrs['content'] for item in soup('meta')
+				  if item.has_attr('property') and
+				  item.attrs['property'].lower() == 'og:image']
+		if not result or not result[0]:
+			return None
+		result = result[0]
+	elif 'key' in data:
+		# Searches for "`key`": "`link`"
+		regex = re.compile('[\'\"]' + re.escape(data['key']) +
+						   '[\'\"]:(\s)?[\'\"](?P<link>[^\s]+)[\'\"]')
+		result = re.search(regex, response.text)
+		if not result:
+			return None
+		result = result.group('link')
+	elif response.headers.get('content-type', '').startswith('image/'):
+		return url
+	else:
+		return None
+
+	# Fix relative links
+	if result[0] == '/':
+		base_url = get_profile_url(website, '')
+		result = base_url + result
+	return result
+
+def check_username(website, username):
+	url = get_profile_url(website, username)
 
 	possible = check_format(website, username)
 
@@ -34,6 +81,8 @@ def check_username(website, username):
 		return {
 			'status': code,
 			'url': url,
+			'avatar': get_avatar(website, username) if code == 200
+					  else None,
 			'possible': possible,
 		}
 
@@ -54,6 +103,7 @@ def check_username(website, username):
 		return {
 			'status': code,
 			'url': url,
+			'avatar': get_avatar(website, username),
 			'possible': possible,
 			'profile': profile,
 		}
@@ -62,6 +112,7 @@ def check_username(website, username):
 		return {
 			'status': r.get(url).status_code,
 			'url': url,
+			'avatar': get_avatar(website, username),
 			'possible': possible,
 		}
 

@@ -6,8 +6,9 @@ import random
 import pytest
 import logging
 import username_api
+import os.path
 
-data = yaml.load(open('tests/test_data.yml'))
+data = yaml.load(open(os.path.join('tests', 'test_data.yml')))
 websites = yaml.load(open('websites.yml'))
 
 invalid_username = '$very%long{invalid}user(name)'
@@ -28,10 +29,9 @@ def get_expected_response(website, user, status):
   return {
     'possible': True,
     'status': status,
-    'url': websites['urls'].get(website, 'https://{w}.com/{u}').format(
-      w=website,
-      u=user
-    )
+    'url': username_api.get_profile_url(website, user),
+    'avatar': username_api.get_avatar(website, user) if status == 200
+              else None
   }
 
 class TestUsernameApi(object):
