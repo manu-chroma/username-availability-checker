@@ -3,6 +3,7 @@ urls:
   behance: https://{w}.net/{u}
   pinterest: https://in.{w}.com/{u}/
   tumblr: https://{u}.{w}.com
+  facebook: https://mbasic.{w}.com/{u}/
 username_patterns:
   pinterest:
     characters: a-zA-Z0-9_
@@ -38,3 +39,10 @@ username_patterns:
     characters: a-zA-Z0-9_-
     min_length: 1
     max_length: 25
+  facebook:
+    characters: a-z0-9A-Z.
+    min_length: 5
+    max_length: 50
+    invalid_patterns:
+      - "\\.(com|net)"
+      - "(\\.)\\1{1,}"  # consecutive '.' not allowed

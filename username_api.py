@@ -36,6 +36,28 @@ def check_username(website, username):
 			'url': url,
 			'possible': possible,
 		}
+
+	elif website == 'facebook':
+		res = r.get(url)
+		code = res.status_code
+		# Using mfacebook for checking username,
+		# when a username exists but hidden from
+		# search engines, it gives a login redirect
+		# and 200 code but in case of no profile
+		# available, gives a 404 error.
+
+		if len(res.history) > 0 and code == 200:
+			profile = 'hidden'
+		else:
+			profile = 'visible'
+
+		return {
+			'status': code,
+			'url': url,
+			'possible': possible,
+			'profile': profile,
+		}
+
 	else:
 		return {
 			'status': r.get(url).status_code,
@@ -62,6 +84,14 @@ def check_format(website, username):
 	)
 
 	matches = re.match(pattern, username)
+
+	if website == 'facebook':
+		# enforce 5 char limit excluding '.'
+		# for facebook
+		username = username.replace(".", "")
+
+		if len(username) <= 5:
+			return False
 
 	if matches is not None:
 		return True

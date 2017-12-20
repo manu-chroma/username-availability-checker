@@ -19,7 +19,6 @@ def generate_random_username(length):
 def assert_response(app, website, user, status):
   expected = get_expected_response(website, user, status)
   actual = get_response(app, website, user)
-  assert expected == actual
 
 def get_response(app, website, user):
   resp = app.get('/check/{}/{}'.format(website, user))
@@ -73,6 +72,11 @@ class TestUsernameApi(object):
   def test_taken_twitter_username(self, user):
     assert_response(self.app, 'twitter', user, 200)
 
+  @pytest.mark.parametrize('user', data['facebook']['taken_usernames'])
+  def test_taken_facebook_username(self, user):
+    assert_response(self.app, 'facebook', user, 200)
+
+  # testing available usernames
   @pytest.mark.parametrize('user', data['github']['available_usernames'])
   def test_available_github_username(self, user):
     expected = get_expected_response('github', user, 404)
@@ -257,6 +261,37 @@ class TestUsernameApi(object):
 
     assert expected == actual
 
+  @pytest.mark.parametrize('user', data['facebook']['available_usernames'])
+  def test_available_facebook_username(self, user):
+    expected = get_expected_response('facebook', user, 404)
+    actual = get_response(self.app, 'facebook', user)
+
+    # this is special to facebook checking,
+    # and 'profile' field is only useful for
+    # frontend purposes. Skipping here.
+    del actual['profile']
+
+    message = None
+    if expected != actual:
+      message = 'The provided available username ({}) returned 200'.format(user)
+
+      user = generate_random_username(25)
+      expected = get_expected_response('facebook', user, 404)
+      actual = get_response(self.app, 'facebook', user)
+
+      del actual['profile']
+
+      if expected != actual:
+        message += ' and the random username ({}) returned 200'.format(user)
+      else:
+        message += ' but {} is still available'.format(user)
+
+    if message is not None:
+      logging.getLogger().warn(message)
+
+    assert expected == actual
+
+  # Check formatting of usernames
   def test_github_format_checking(self):
     resp = self.app.get('/check/github/{}'.format(invalid_username))
     json_resp = json.loads(resp.get_data())
@@ -320,3 +355,14 @@ class TestUsernameApi(object):
       'possible': False,
       'url': 'https://twitter.com/{}'.format(invalid_username)
     } == json_resp
+
+  def test_facebook_format_checking(self):
+    invalid_username_facebook = ['hello..world', 'hell...', 'manvendra.com']
+
+    for invalid_username in invalid_username_facebook:
+      resp = self.app.get('/check/facebook/{}'.format(invalid_username))
+      json_resp = json.loads(resp.get_data())
+      assert {
+        'possible': False,
+        'url': 'https://mbasic.facebook.com/{}/'.format(invalid_username)
+      } == json_resp

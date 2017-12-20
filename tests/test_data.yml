@@ -1,4 +1,11 @@
 ---
+facebook:
+  taken_usernames:
+    - "manu.chroma"
+    - "vijeth.kv"
+    - "gyanlakhwani"
+  available_usernames:
+    - "manvendra03"
 github:
   taken_usernames:
     - "andrewda"
