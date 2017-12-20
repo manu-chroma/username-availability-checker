@@ -1,6 +1,6 @@
 language: python
 python:
- - 3.6
+  - 3.6
 
 cache: pip
 
@@ -15,3 +15,4 @@ before_install:
 
 script:
   - python -m pytest -s -v
+  - coala --non-interactive -V
