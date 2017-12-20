@@ -1,1 +1,3 @@
 pytest
+coala
+coala-bears
