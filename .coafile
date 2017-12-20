@@ -30,7 +30,7 @@ use_spaces = true
 files = templates/*.html
 bears = LineLengthBear, SpaceConsistencyBear
 use_spaces = true
-max_line_length = 100
+max_line_length = 700
 default_actions = *: ApplyPatchAction
 
 [yaml]
