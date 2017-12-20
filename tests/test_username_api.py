@@ -22,7 +22,7 @@ def assert_response(app, website, user, status):
 
 def get_response(app, website, user):
   resp = app.get('/check/{}/{}'.format(website, user))
-  return json.loads(resp.get_data())
+  return json.loads(resp.get_data().decode())
 
 def get_expected_response(website, user, status):
   return {
@@ -294,7 +294,7 @@ class TestUsernameApi(object):
   # Check formatting of usernames
   def test_github_format_checking(self):
     resp = self.app.get('/check/github/{}'.format(invalid_username))
-    json_resp = json.loads(resp.get_data())
+    json_resp = json.loads(resp.get_data().decode())
     assert {
       'possible': False,
       'url': 'https://github.com/{}'.format(invalid_username)
@@ -302,7 +302,7 @@ class TestUsernameApi(object):
 
   def test_soundcloud_format_checking(self):
     resp = self.app.get('/check/soundcloud/{}'.format(invalid_username))
-    json_resp = json.loads(resp.get_data())
+    json_resp = json.loads(resp.get_data().decode())
     assert {
       'possible': False,
       'url': 'https://soundcloud.com/{}'.format(invalid_username)
@@ -310,7 +310,7 @@ class TestUsernameApi(object):
 
   def test_gitlab_format_checking(self):
     resp = self.app.get('/check/gitlab/{}'.format(invalid_username))
-    json_resp = json.loads(resp.get_data())
+    json_resp = json.loads(resp.get_data().decode())
     assert {
       'possible': False,
       'url': 'https://gitlab.com/{}'.format(invalid_username)
@@ -318,7 +318,7 @@ class TestUsernameApi(object):
 
   def test_tumblr_format_checking(self):
     resp = self.app.get('/check/tumblr/{}'.format(invalid_username))
-    json_resp = json.loads(resp.get_data())
+    json_resp = json.loads(resp.get_data().decode())
     assert {
       'possible': False,
       'url': 'https://{}.tumblr.com'.format(invalid_username)
@@ -326,7 +326,7 @@ class TestUsernameApi(object):
 
   def test_behance_format_checking(self):
     resp = self.app.get('/check/behance/{}'.format(invalid_username))
-    json_resp = json.loads(resp.get_data())
+    json_resp = json.loads(resp.get_data().decode())
     assert {
       'possible': False,
       'url': 'https://behance.net/{}'.format(invalid_username)
@@ -334,7 +334,7 @@ class TestUsernameApi(object):
 
   def test_pinterest_format_checking(self):
     resp = self.app.get('/check/pinterest/{}'.format(invalid_username))
-    json_resp = json.loads(resp.get_data())
+    json_resp = json.loads(resp.get_data().decode())
     assert {
       'possible': False,
       'url': 'https://in.pinterest.com/{}/'.format(invalid_username)
@@ -342,7 +342,7 @@ class TestUsernameApi(object):
 
   def test_instagram_format_checking(self):
     resp = self.app.get('/check/instagram/{}'.format(invalid_username))
-    json_resp = json.loads(resp.get_data())
+    json_resp = json.loads(resp.get_data().decode())
     assert {
       'possible': False,
       'url': 'https://instagram.com/{}'.format(invalid_username)
@@ -350,7 +350,7 @@ class TestUsernameApi(object):
 
   def test_twitter_format_checking(self):
     resp = self.app.get('/check/twitter/{}'.format(invalid_username))
-    json_resp = json.loads(resp.get_data())
+    json_resp = json.loads(resp.get_data().decode())
     assert {
       'possible': False,
       'url': 'https://twitter.com/{}'.format(invalid_username)
@@ -361,7 +361,7 @@ class TestUsernameApi(object):
 
     for invalid_username in invalid_username_facebook:
       resp = self.app.get('/check/facebook/{}'.format(invalid_username))
-      json_resp = json.loads(resp.get_data())
+      json_resp = json.loads(resp.get_data().decode())
       assert {
         'possible': False,
         'url': 'https://mbasic.facebook.com/{}/'.format(invalid_username)
