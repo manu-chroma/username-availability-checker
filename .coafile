@@ -21,9 +21,6 @@ default_actions = PEP8Bear: ApplyPatchAction
 [all.linelength]
 bears = LineLengthBear
 
-[all.links]
-bears = InvalidLinkBear
-
 [css]
 files = static/css/*.css
 bears = LineLengthBear, SpaceConsistencyBear
