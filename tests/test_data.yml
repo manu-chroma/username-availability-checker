@@ -1,5 +1,8 @@
 ---
 facebook:
+  avatar_usernames:
+    - "gyanlakhwani"
+    - "brianchesky"
   taken_usernames:
     - "manu.chroma"
     - "vijeth.kv"

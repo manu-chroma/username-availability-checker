@@ -337,7 +337,7 @@ class TestUsernameApi(object):
     json_resp = json.loads(resp.get_data().decode())
     assert {
       'possible': False,
-      'url': 'https://in.pinterest.com/{}/'.format(invalid_username)
+      'url': 'https://in.pinterest.com/{}'.format(invalid_username)
     } == json_resp
 
   def test_instagram_format_checking(self):
@@ -364,5 +364,5 @@ class TestUsernameApi(object):
       json_resp = json.loads(resp.get_data().decode())
       assert {
         'possible': False,
-        'url': 'https://mbasic.facebook.com/{}/'.format(invalid_username)
+        'url': 'https://mbasic.facebook.com/{}'.format(invalid_username)
       } == json_resp

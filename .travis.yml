@@ -14,4 +14,4 @@ before_install:
   - cat test-requirements.txt >> requirements.txt
 
 script:
-  - python -m pytest -s
+  - python -m pytest -s -v
