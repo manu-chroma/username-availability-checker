@@ -66,6 +66,12 @@ openhub:
     - "nibnalin"
   available_usernames:
     - "zNRe3jx3isA8CoM"
+opensuse:
+  taken_usernames:
+    - "warlordfff"
+    - "biscuitsnake"
+  available_usernames:
+    - "zNRe3jx3isA8CoM"
 pinterest:
   taken_usernames:
     - "steve"
