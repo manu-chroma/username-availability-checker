@@ -9,7 +9,7 @@ import re
 import yaml
 
 app = Flask(__name__)
-cors = CORS(app) 
+cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 patterns = yaml.load(open('websites.yml'))
@@ -64,7 +64,6 @@ def get_avatar(website, username):
 
 def check_username(website, username):
 	url = get_profile_url(website, username)
-
 	possible = check_format(website, username)
 
 	if not possible:
@@ -73,16 +72,20 @@ def check_username(website, username):
 			'possible': possible,
 		}
 
-	if website in ['pinterest', 'gitlab']:
+	if website in ['pinterest', 'gitlab', 'opensuse']:
 		res  = r.get(url)
-		code = 200 if bytes(username, encoding='utf-8') in res.content \
-			else 404
+		if bytes(username, encoding='utf-8') in res.content:
+			code = 200
+		if bytes('About me', encoding='utf-8') in res.content:
+			code = 200
+		else:
+			code = 404
 
 		return {
 			'status': code,
 			'url': url,
 			'avatar': get_avatar(website, username) if code == 200
-					  else None,
+													else None,
 			'possible': possible,
 		}
 
