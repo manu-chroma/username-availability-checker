@@ -1,20 +1,26 @@
-import unittest
 import json
-import yaml
-import string
-import random
-import pytest
 import logging
-import username_api
 import os.path
+import random
+import string
+
+from parameterized import parameterized
+import pytest
+import yaml
+
+import username_api
 
 data = yaml.load(open(os.path.join('tests', 'test_data.yml')))
 websites = yaml.load(open('websites.yml'))
 
 invalid_username = '$very%long{invalid}user(name)'
 
-def generate_random_username(length, first_char_letter=False):
-  return ''.join(generate_random_character(length, first_char_letter))
+def generate_random_username(website, length):
+  first_char_letter = False
+  if website == 'openhub':
+    first_char_letter = True
+  return ''.join(generate_random_character(length,
+    first_char_letter=first_char_letter))
 
 def generate_random_character(length, first_char_letter):
   for i in range(length):
@@ -40,306 +46,61 @@ def get_expected_response(website, user, status):
               else None
   }
 
+def load_availability_test_cases(status):
+  res = []
+  for website in data:
+    if status == 'available_username':
+      usernames = data[website]['available_usernames']
+    if status == 'taken_username':
+      usernames = data[website]['taken_usernames']
+    res.extend((website, user) for user in usernames)
+
+  return res
+
+def load_format_checking_cases():
+  res = []
+  for website in data:
+    usernames = data[website]['invalid_usernames']
+    res.extend((website, user) for user in usernames)
+
+  return res
+
+def custom_name_func(testcase_func, param_num, param):
+  return '%s_%s' % (
+    testcase_func.__name__,
+    parameterized.to_safe_name('_'.join(str(x) for x in param.args)),
+  )
+
 class TestUsernameApi(object):
   @classmethod
   def setup_class(self):
     self.app = username_api.app.test_client()
-    self.data = data
+    self.websites = websites
 
-  @pytest.mark.parametrize('user', data['github']['taken_usernames'])
-  def test_taken_github_username(self, user):
-    assert_response(self.app, 'github', user, 200)
-
-  @pytest.mark.parametrize('user', data['soundcloud']['taken_usernames'])
-  def test_taken_soundcloud_username(self, user):
-    assert_response(self.app, 'soundcloud', user, 200)
-
-  @pytest.mark.parametrize('user', data['gitlab']['taken_usernames'])
-  def test_taken_gitlab_username(self, user):
-    assert_response(self.app, 'gitlab', user, 200)
-
-  @pytest.mark.parametrize('user', data['tumblr']['taken_usernames'])
-  def test_taken_tumblr_username(self, user):
-    assert_response(self.app, 'tumblr', user, 200)
-
-  @pytest.mark.parametrize('user', data['behance']['taken_usernames'])
-  def test_taken_behance_username(self, user):
-    assert_response(self.app, 'behance', user, 200)
-
-  @pytest.mark.parametrize('user', data['pinterest']['taken_usernames'])
-  def test_taken_pinterest_username(self, user):
-    assert_response(self.app, 'pinterest', user, 200)
-
-  @pytest.mark.parametrize('user', data['instagram']['taken_usernames'])
-  def test_taken_instagram_username(self, user):
-    assert_response(self.app, 'instagram', user, 200)
-
-  @pytest.mark.parametrize('user', data['twitter']['taken_usernames'])
-  def test_taken_twitter_username(self, user):
-    assert_response(self.app, 'twitter', user, 200)
-
-  @pytest.mark.parametrize('user', data['facebook']['taken_usernames'])
-  def test_taken_facebook_username(self, user):
-    assert_response(self.app, 'facebook', user, 200)
-
-  @pytest.mark.parametrize('user', data['openhub']['taken_usernames'])
-  def test_taken_openhub_username(self, user):
-    assert_response(self.app, 'openhub', user, 200)
-
-  @pytest.mark.parametrize('user', data['deviantart']['taken_usernames'])
-  def test_taken_deviantart_username(self, user):
-    assert_response(self.app, 'deviantart', user, 200)
-
-  # testing available usernames
-  @pytest.mark.parametrize('user', data['github']['available_usernames'])
-  def test_available_github_username(self, user):
-    expected = get_expected_response('github', user, 404)
-    actual = get_response(self.app, 'github', user)
-
-    message = None
-    if expected != actual:
-      message = 'The provided available username ({}) returned 200'.format(user)
-
-      user = generate_random_username(32)
-      expected = get_expected_response('github', user, 404)
-      actual = get_response(self.app, 'github', user)
-
-      if expected != actual:
-        message += ' and the random username ({}) returned 200'.format(user)
-      else:
-        message += ' but {} is still available'.format(user)
-
-    if message is not None:
-      logging.getLogger().warn(message)
-
-    assert expected == actual
-
-  @pytest.mark.parametrize('user', data['soundcloud']['available_usernames'])
-  def test_available_soundcloud_username(self, user):
-    expected = get_expected_response('soundcloud', user, 404)
-    actual = get_response(self.app, 'soundcloud', user)
-
-    message = None
-    if expected != actual:
-      message = 'The provided available username ({}) returned 200'.format(user)
-
-      user = generate_random_username(25)
-      expected = get_expected_response('soundcloud', user, 404)
-      actual = get_response(self.app, 'soundcloud', user)
-
-      if expected != actual:
-        message += ' and the random username ({}) returned 200'.format(user)
-      else:
-        message += ' but {} is still available'.format(user)
-
-    if message is not None:
-      logging.getLogger().warn(message)
-
-    assert expected == actual
-
-  @pytest.mark.parametrize('user', data['gitlab']['available_usernames'])
-  def test_available_gitlab_username(self, user):
-    expected = get_expected_response('gitlab', user, 404)
-    actual = get_response(self.app, 'gitlab', user)
-
-    message = None
-    if expected != actual:
-      message = 'The provided available username ({}) returned 200'.format(user)
-
-      user = generate_random_username(32)
-      expected = get_expected_response('gitlab', user, 404)
-      actual = get_response(self.app, 'gitlab', user)
-
-      if expected != actual:
-        message += ' and the random username ({}) returned 200'.format(user)
-      else:
-        message += ' but {} is still available'.format(user)
-
-    if message is not None:
-      logging.getLogger().warn(message)
-
-    assert expected == actual
-
-  @pytest.mark.parametrize('user', data['tumblr']['available_usernames'])
-  def test_available_tumblr_username(self, user):
-    expected = get_expected_response('tumblr', user, 404)
-    actual = get_response(self.app, 'tumblr', user)
-
-    message = None
-    if expected != actual:
-      message = 'The provided available username ({}) returned 200'.format(user)
-
-      user = generate_random_username(15)
-      expected = get_expected_response('tumblr', user, 404)
-      actual = get_response(self.app, 'tumblr', user)
-
-      if expected != actual:
-        message += ' and the random username ({}) returned 200'.format(user)
-      else:
-        message += ' but {} is still available'.format(user)
-
-    if message is not None:
-      logging.getLogger().warn(message)
-
-    assert expected == actual
-
-  @pytest.mark.parametrize('user', data['behance']['available_usernames'])
-  def test_available_behance_username(self, user):
-    expected = get_expected_response('behance', user, 404)
-    actual = get_response(self.app, 'behance', user)
-
-    message = None
-    if expected != actual:
-      message = 'The provided available username ({}) returned 200'.format(user)
-
-      user = generate_random_username(15)
-      expected = get_expected_response('behance', user, 404)
-      actual = get_response(self.app, 'behance', user)
-
-      if expected != actual:
-        message += ' and the random username ({}) returned 200'.format(user)
-      else:
-        message += ' but {} is still available'.format(user)
-
-    if message is not None:
-      logging.getLogger().warn(message)
-
-    assert expected == actual
-
-  @pytest.mark.parametrize('user', data['pinterest']['available_usernames'])
-  def test_available_pinterest_username(self, user):
-    expected = get_expected_response('pinterest', user, 404)
-    actual = get_response(self.app, 'pinterest', user)
-
-    message = None
-    if expected != actual:
-      message = 'The provided available username ({}) returned 200'.format(user)
-
-      user = generate_random_username(15)
-      expected = get_expected_response('pinterest', user, 404)
-      actual = get_response(self.app, 'pinterest', user)
-
-      if expected != actual:
-        message += ' and the random username ({}) returned 200'.format(user)
-      else:
-        message += ' but {} is still available'.format(user)
-
-    if message is not None:
-      logging.getLogger().warn(message)
-
-    assert expected == actual
-
-  @pytest.mark.parametrize('user', data['instagram']['available_usernames'])
-  def test_available_instagram_username(self, user):
-    expected = get_expected_response('instagram', user, 404)
-    actual = get_response(self.app, 'instagram', user)
-
-    message = None
-    if expected != actual:
-      message = 'The provided available username ({}) returned 200'.format(user)
-
-      user = generate_random_username(15)
-      expected = get_expected_response('instagram', user, 404)
-      actual = get_response(self.app, 'instagram', user)
-
-      if expected != actual:
-        message += ' and the random username ({}) returned 200'.format(user)
-      else:
-        message += ' but {} is still available'.format(user)
-
-    if message is not None:
-      logging.getLogger().warn(message)
-
-    assert expected == actual
-
-  @pytest.mark.parametrize('user', data['twitter']['available_usernames'])
-  def test_available_twitter_username(self, user):
-    expected = get_expected_response('twitter', user, 404)
-    actual = get_response(self.app, 'twitter', user)
-
-    message = None
-    if expected != actual:
-      message = 'The provided available username ({}) returned 200'.format(user)
-
-      user = generate_random_username(15)
-      expected = get_expected_response('twitter', user, 404)
-      actual = get_response(self.app, 'twitter', user)
-
-      if expected != actual:
-        message += ' and the random username ({}) returned 200'.format(user)
-      else:
-        message += ' but {} is still available'.format(user)
-
-    if message is not None:
-      logging.getLogger().warn(message)
-
-    assert expected == actual
-
-  @pytest.mark.parametrize('user', data['facebook']['available_usernames'])
-  def test_available_facebook_username(self, user):
-    expected = get_expected_response('facebook', user, 404)
-    actual = get_response(self.app, 'facebook', user)
+  @parameterized.expand(load_availability_test_cases('available_username'),
+      testcase_func_name=custom_name_func)
+  def test_available_username(self, website, user):
+    expected = get_expected_response(website, user, 404)
+    actual = get_response(self.app, website, user)
 
     # this is special to facebook checking,
     # and 'profile' field is only useful for
     # frontend purposes. Skipping here.
-    del actual['profile']
-
-    message = None
-    if expected != actual:
-      message = 'The provided available username ({}) returned 200'.format(user)
-
-      user = generate_random_username(25)
-      expected = get_expected_response('facebook', user, 404)
-      actual = get_response(self.app, 'facebook', user)
-
+    if website == 'facebook':
       del actual['profile']
 
-      if expected != actual:
-        message += ' and the random username ({}) returned 200'.format(user)
-      else:
-        message += ' but {} is still available'.format(user)
-
-    if message is not None:
-      logging.getLogger().warn(message)
-
-    assert expected == actual
-
-  @pytest.mark.parametrize('user', data['openhub']['available_usernames'])
-  def test_available_openhub_username(self, user):
-    expected = get_expected_response('openhub', user, 404)
-    actual = get_response(self.app, 'openhub', user)
-
     message = None
     if expected != actual:
       message = 'The provided available username ({}) returned 200'.format(user)
+      username_pattern = self.websites['username_patterns'][website]
+      username_length = 15
 
-      user = generate_random_username(30, first_char_letter=True)
-      expected = get_expected_response('openhub', user, 404)
-      actual = get_response(self.app, 'openhub', user)
+      user = generate_random_username(website, username_length)
+      expected = get_expected_response(website, user, 404)
+      actual = get_response(self.app, website, user)
 
-      if expected != actual:
-        message += ' and the random username ({}) returned 200'.format(user)
-      else:
-        message += ' but {} is still available'.format(user)
-
-    if message is not None:
-      logging.getLogger().warn(message)
-
-    assert expected == actual
-
-  @pytest.mark.parametrize('user', data['deviantart']['available_usernames'])
-  def test_available_deviantart_username(self, user):
-    expected = get_expected_response('deviantart', user, 404)
-    actual = get_response(self.app, 'deviantart', user)
-
-    message = None
-    if expected != actual:
-      message = 'The provided available username ({}) returned 200'.format(user)
-
-      user = generate_random_username(15)
-      expected = get_expected_response('deviantart', user, 404)
-      actual = get_response(self.app, 'deviantart', user)
+      if website == 'facebook':
+        del actual['profile']
 
       if expected != actual:
         message += ' and the random username ({}) returned 200'.format(user)
@@ -351,94 +112,18 @@ class TestUsernameApi(object):
 
     assert expected == actual
 
-  # Check formatting of usernames
-  def test_github_format_checking(self):
-    resp = self.app.get('/check/github/{}'.format(invalid_username))
+  @parameterized.expand(load_availability_test_cases('taken_username'),
+      testcase_func_name=custom_name_func)
+  def test_taken_username(self, website, user):
+    assert_response(self.app, website, user, 200)
+
+  @parameterized.expand(load_format_checking_cases(),
+      testcase_func_name=custom_name_func)
+  def test_format_checking(self, website, username):
+    resp = self.app.get('/check/{w}/{u}'.format(w=website, u=username))
     json_resp = json.loads(resp.get_data().decode())
+    url = username_api.get_profile_url(website, username)
     assert {
       'possible': False,
-      'url': 'https://github.com/{}'.format(invalid_username)
-    } == json_resp
-
-  def test_soundcloud_format_checking(self):
-    resp = self.app.get('/check/soundcloud/{}'.format(invalid_username))
-    json_resp = json.loads(resp.get_data().decode())
-    assert {
-      'possible': False,
-      'url': 'https://soundcloud.com/{}'.format(invalid_username)
-    } == json_resp
-
-  def test_gitlab_format_checking(self):
-    resp = self.app.get('/check/gitlab/{}'.format(invalid_username))
-    json_resp = json.loads(resp.get_data().decode())
-    assert {
-      'possible': False,
-      'url': 'https://gitlab.com/{}'.format(invalid_username)
-    } == json_resp
-
-  def test_tumblr_format_checking(self):
-    resp = self.app.get('/check/tumblr/{}'.format(invalid_username))
-    json_resp = json.loads(resp.get_data().decode())
-    assert {
-      'possible': False,
-      'url': 'https://{}.tumblr.com'.format(invalid_username)
-    } == json_resp
-
-  def test_behance_format_checking(self):
-    resp = self.app.get('/check/behance/{}'.format(invalid_username))
-    json_resp = json.loads(resp.get_data().decode())
-    assert {
-      'possible': False,
-      'url': 'https://behance.net/{}'.format(invalid_username)
-    } == json_resp
-
-  def test_pinterest_format_checking(self):
-    resp = self.app.get('/check/pinterest/{}'.format(invalid_username))
-    json_resp = json.loads(resp.get_data().decode())
-    assert {
-      'possible': False,
-      'url': 'https://in.pinterest.com/{}'.format(invalid_username)
-    } == json_resp
-
-  def test_instagram_format_checking(self):
-    resp = self.app.get('/check/instagram/{}'.format(invalid_username))
-    json_resp = json.loads(resp.get_data().decode())
-    assert {
-      'possible': False,
-      'url': 'https://instagram.com/{}'.format(invalid_username)
-    } == json_resp
-
-  def test_twitter_format_checking(self):
-    resp = self.app.get('/check/twitter/{}'.format(invalid_username))
-    json_resp = json.loads(resp.get_data().decode())
-    assert {
-      'possible': False,
-      'url': 'https://twitter.com/{}'.format(invalid_username)
-    } == json_resp
-
-  def test_facebook_format_checking(self):
-    invalid_username_facebook = ['hello..world', 'hell...', 'manvendra.com']
-
-    for invalid_username in invalid_username_facebook:
-      resp = self.app.get('/check/facebook/{}'.format(invalid_username))
-      json_resp = json.loads(resp.get_data().decode())
-      assert {
-        'possible': False,
-        'url': 'https://mbasic.facebook.com/{}'.format(invalid_username)
-      } == json_resp
-
-  def test_openhub_format_checking(self):
-    resp = self.app.get('/check/openhub/{}'.format(invalid_username))
-    json_resp = json.loads(resp.get_data().decode())
-    assert {
-      'possible': False,
-      'url': 'https://www.openhub.net/accounts/{}'.format(invalid_username)
-    } == json_resp
-
-  def test_deviantart_format_checking(self):
-    resp = self.app.get('/check/deviantart/{}'.format(invalid_username))
-    json_resp = json.loads(resp.get_data().decode())
-    assert {
-      'possible': False,
-      'url': 'https://{}.deviantart.com/'.format(invalid_username)
+      'url': url
     } == json_resp

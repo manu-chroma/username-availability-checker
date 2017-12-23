@@ -1,5 +1,7 @@
 ---
 deviantart:
+  invalid_usernames:
+    - "$very%long{invalid}user(name)"
   taken_usernames:
     - "joshua"
     - "steve"
@@ -10,6 +12,10 @@ facebook:
   avatar_usernames:
     - "gyanlakhwani"
     - "brianchesky"
+  invalid_usernames:
+    - "hello..world"
+    - "hell..."
+    - "manvendra.com"
   taken_usernames:
     - "manu.chroma"
     - "vijeth.kv"
@@ -17,6 +23,8 @@ facebook:
   available_usernames:
     - "manvendra03"
 github:
+  invalid_usernames:
+    - "$very%long{invalid}user(name)"
   taken_usernames:
     - "andrewda"
     - "jlord"
@@ -25,6 +33,8 @@ github:
   available_usernames:
     - "zNRe3jx3isA8CoM"
 gitlab:
+  invalid_usernames:
+    - "$very%long{invalid}user(name)"
   taken_usernames:
     - "andrewda"
     - "nkprince007"
@@ -32,34 +42,46 @@ gitlab:
   available_usernames:
     - "zNRe3jx3isA8CoM"
 soundcloud:
+  invalid_usernames:
+    - "$very%long{invalid}user(name)"
   taken_usernames:
     - "g_eazy"
     - "postmalone"
   available_usernames:
     - "zNRe3jx3isA8CoM"
 twitter:
+  invalid_usernames:
+    - "$very%long{invalid}user(name)"
   taken_usernames:
     - "BillGates"
     - "ElonMusk"
   available_usernames:
     - "zNRe3jx3isA8CoM"
 instagram:
+  invalid_usernames:
+    - "$very%long{invalid}user(name)"
   taken_usernames:
     - "BillGates"
     - "ElonMusk"
   available_usernames:
     - "zNRe3jx3isA8CoM"
 behance:
+  invalid_usernames:
+    - "$very%long{invalid}user(name)"
   taken_usernames:
     - "andrewda"
   available_usernames:
     - "zNRe3jx3isA8CoM"
 tumblr:
+  invalid_usernames:
+    - "$very%long{invalid}user(name)"
   taken_usernames:
     - "steve"
   available_usernames:
     - "zNRe3jx3isA8CoM"
 openhub:
+  invalid_usernames:
+    - "$very%long{invalid}user(name)"
   taken_usernames:
     - "seeeturtle"
     - "andrewda"
@@ -67,6 +89,8 @@ openhub:
   available_usernames:
     - "zNRe3jx3isA8CoM"
 pinterest:
+  invalid_usernames:
+    - "$very%long{invalid}user(name)"
   taken_usernames:
     - "steve"
   available_usernames:
