@@ -1,4 +1,11 @@
 ---
+deviantart:
+  taken_usernames:
+    - "joshua"
+    - "steve"
+    - "john"
+  available_usernames:
+    - "zNRe3jx3isA8CoM"
 facebook:
   avatar_usernames:
     - "gyanlakhwani"
@@ -50,6 +57,13 @@ behance:
 tumblr:
   taken_usernames:
     - "steve"
+  available_usernames:
+    - "zNRe3jx3isA8CoM"
+openhub:
+  taken_usernames:
+    - "seeeturtle"
+    - "andrewda"
+    - "nibnalin"
   available_usernames:
     - "zNRe3jx3isA8CoM"
 pinterest:

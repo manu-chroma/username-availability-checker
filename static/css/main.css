@@ -76,6 +76,13 @@ html,body
   visibility: visible;
 }
 
+.fa-openhub {
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+  background-image: url("https://raw.githubusercontent.com/blackducksoftware/ohloh-ui/master/public/images/openhub_twitter_24.png");
+}
+
 h1
 {
   font-family:Roboto, sans;
