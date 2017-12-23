@@ -13,9 +13,15 @@ websites = yaml.load(open('websites.yml'))
 
 invalid_username = '$very%long{invalid}user(name)'
 
-def generate_random_username(length):
-  return ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase \
-    + string.digits) for _ in range(length))
+def generate_random_username(length, first_char_letter=False):
+  return ''.join(generate_random_character(length, first_char_letter))
+
+def generate_random_character(length, first_char_letter):
+  for i in range(length):
+    if first_char_letter and i == 0:
+      yield random.choice(string.ascii_letters)
+    else:
+      yield random.choice(string.ascii_letters + string.digits)
 
 def assert_response(app, website, user, status):
   expected = get_expected_response(website, user, status)
