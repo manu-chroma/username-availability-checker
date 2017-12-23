@@ -82,6 +82,14 @@ class TestUsernameApi(object):
   def test_taken_facebook_username(self, user):
     assert_response(self.app, 'facebook', user, 200)
 
+  @pytest.mark.parametrize('user', data['openhub']['taken_usernames'])
+  def test_taken_openhub_username(self, user):
+    assert_response(self.app, 'openhub', user, 200)
+
+  @pytest.mark.parametrize('user', data['deviantart']['taken_usernames'])
+  def test_taken_deviantart_username(self, user):
+    assert_response(self.app, 'deviantart', user, 200)
+
   # testing available usernames
   @pytest.mark.parametrize('user', data['github']['available_usernames'])
   def test_available_github_username(self, user):
@@ -297,6 +305,52 @@ class TestUsernameApi(object):
 
     assert expected == actual
 
+  @pytest.mark.parametrize('user', data['openhub']['available_usernames'])
+  def test_available_openhub_username(self, user):
+    expected = get_expected_response('openhub', user, 404)
+    actual = get_response(self.app, 'openhub', user)
+
+    message = None
+    if expected != actual:
+      message = 'The provided available username ({}) returned 200'.format(user)
+
+      user = generate_random_username(30, first_char_letter=True)
+      expected = get_expected_response('openhub', user, 404)
+      actual = get_response(self.app, 'openhub', user)
+
+      if expected != actual:
+        message += ' and the random username ({}) returned 200'.format(user)
+      else:
+        message += ' but {} is still available'.format(user)
+
+    if message is not None:
+      logging.getLogger().warn(message)
+
+    assert expected == actual
+
+  @pytest.mark.parametrize('user', data['deviantart']['available_usernames'])
+  def test_available_deviantart_username(self, user):
+    expected = get_expected_response('deviantart', user, 404)
+    actual = get_response(self.app, 'deviantart', user)
+
+    message = None
+    if expected != actual:
+      message = 'The provided available username ({}) returned 200'.format(user)
+
+      user = generate_random_username(15)
+      expected = get_expected_response('deviantart', user, 404)
+      actual = get_response(self.app, 'deviantart', user)
+
+      if expected != actual:
+        message += ' and the random username ({}) returned 200'.format(user)
+      else:
+        message += ' but {} is still available'.format(user)
+
+    if message is not None:
+      logging.getLogger().warn(message)
+
+    assert expected == actual
+
   # Check formatting of usernames
   def test_github_format_checking(self):
     resp = self.app.get('/check/github/{}'.format(invalid_username))
@@ -372,3 +426,19 @@ class TestUsernameApi(object):
         'possible': False,
         'url': 'https://mbasic.facebook.com/{}'.format(invalid_username)
       } == json_resp
+
+  def test_openhub_format_checking(self):
+    resp = self.app.get('/check/openhub/{}'.format(invalid_username))
+    json_resp = json.loads(resp.get_data().decode())
+    assert {
+      'possible': False,
+      'url': 'https://www.openhub.net/accounts/{}'.format(invalid_username)
+    } == json_resp
+
+  def test_deviantart_format_checking(self):
+    resp = self.app.get('/check/deviantart/{}'.format(invalid_username))
+    json_resp = json.loads(resp.get_data().decode())
+    assert {
+      'possible': False,
+      'url': 'https://{}.deviantart.com/'.format(invalid_username)
+    } == json_resp
