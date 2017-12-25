@@ -15,7 +15,7 @@ websites = yaml.load(open('websites.yml'))
 def load_test_cases(type):
 	res = []
 	for website in data:
-		if website in ['behance', 'openhub']:
+		if website in ['behance', 'openhub', 'opensuse']:
 			users = [None]
 		elif type == 'with_avatar':
 			if 'avatar_usernames' in data[website]:

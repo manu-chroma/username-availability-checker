@@ -81,6 +81,16 @@ html,body
   height: 24px;
   width: 24px;
   background-image: url("https://raw.githubusercontent.com/blackducksoftware/ohloh-ui/master/public/images/openhub_twitter_24.png");
+  filter: brightness(70%) contrast(200%) grayscale(90%);
+}
+
+.fa-opensuse {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  background-image: url("https://en.opensuse.org/images/9/92/Geeko-button.png");
+  background-size: contain;
+  filter: grayscale(90%);
 }
 
 h1

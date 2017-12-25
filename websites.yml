@@ -6,6 +6,7 @@ urls:
   pinterest: https://in.{w}.com/{u}
   tumblr: https://{u}.{w}.com
   facebook: https://mbasic.{w}.com/{u}
+  opensuse: https://connect.{w}.org/pg/profile/{u}
 username_patterns:
   pinterest:
     characters: a-zA-Z0-9_
@@ -25,6 +26,10 @@ username_patterns:
     characters: a-zA-Z0-9-
     min_length: 1
     max_length: 32
+  opensuse:
+    characters: a-zA-Z0-9_-
+    min_length: 1
+    max_length: 50
   behance:
     characters: a-zA-Z0-9_-
     min_length: 1
@@ -73,5 +78,6 @@ avatar:
     key: image_xlarge_url
   soundcloud: opengraph
   tumblr: opengraph
+  opensuse: false
   twitter:
     url: https://twitter.com/{u}/profile_image?size=original

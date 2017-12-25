@@ -17,9 +17,9 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}" />
     <script src="https://use.fontawesome.com/538119ba0a.js"></script>
     <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='favicon32.png') }}" />
-    
+
     <title>Hello</title>
-    
+
     <script>
         async function request_api(site) {
             return await
@@ -47,7 +47,7 @@
 
         function main ()  {
             // list of supported websites
-            var sites = ["facebook", "twitter", "instagram", "github", "soundcloud", "pinterest", "tumblr", "behance", "gitlab", "openhub", "deviantart"];
+            var sites = ["facebook", "twitter", "instagram", "github", "soundcloud", "pinterest", "tumblr", "behance", "gitlab", "openhub", "deviantart", "opensuse"];
 
             // create cards dynamically for each of the websites
             sites.forEach(website => {
@@ -56,7 +56,7 @@
                 <span id='${website}'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>`)
           });
 
-            // iterate over all the websites and call 
+            // iterate over all the websites and call
             // call request_api each of the wesbite
             sites.forEach(website => {
                 request_api(website);
@@ -81,7 +81,7 @@
         .github-corner:hover .octo-arm {
             animation: octocat-wave 560ms ease-in-out
         }
-        
+
         @keyframes octocat-wave {
             0%,
             100% {
@@ -96,7 +96,7 @@
                 transform: rotate(10deg)
             }
         }
-        
+
         @media (max-width:500px) {
             .github-corner:hover .octo-arm {
                 animation: none
@@ -106,7 +106,7 @@
             }
         }
     </style>
-    
+
     <div id="header">
         <h1>{{username}} </h1>
         <br>

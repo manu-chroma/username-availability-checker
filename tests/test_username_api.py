@@ -62,6 +62,10 @@ class TestUsernameApi(object):
   def test_taken_tumblr_username(self, user):
     assert_response(self.app, 'tumblr', user, 200)
 
+  @pytest.mark.parametrize('user', data['opensuse']['taken_usernames'])
+  def test_taken_opensuse_username(self, user):
+    assert_response(self.app, 'opensuse', user, 200)
+
   @pytest.mark.parametrize('user', data['behance']['taken_usernames'])
   def test_taken_behance_username(self, user):
     assert_response(self.app, 'behance', user, 200)
@@ -172,6 +176,29 @@ class TestUsernameApi(object):
       user = generate_random_username(15)
       expected = get_expected_response('tumblr', user, 404)
       actual = get_response(self.app, 'tumblr', user)
+
+      if expected != actual:
+        message += ' and the random username ({}) returned 200'.format(user)
+      else:
+        message += ' but {} is still available'.format(user)
+
+    if message is not None:
+      logging.getLogger().warn(message)
+
+    assert expected == actual
+
+  @pytest.mark.parametrize('user', data['opensuse']['available_usernames'])
+  def test_available_opensuse_username(self, user):
+    expected = get_expected_response('opensuse', user, 404)
+    actual = get_response(self.app, 'opensuse', user)
+
+    message = None
+    if expected != actual:
+      message = 'The provided available username ({}) returned 200'.format(user)
+
+      user = generate_random_username(15)
+      expected = get_expected_response('opensuse', user, 404)
+      actual = get_response(self.app, 'opensuse', user)
 
       if expected != actual:
         message += ' and the random username ({}) returned 200'.format(user)
@@ -382,6 +409,14 @@ class TestUsernameApi(object):
     assert {
       'possible': False,
       'url': 'https://{}.tumblr.com'.format(invalid_username)
+    } == json_resp
+
+  def test_opensuse_format_checking(self):
+    resp = self.app.get('/check/opensuse/{}'.format(invalid_username))
+    json_resp = json.loads(resp.get_data().decode())
+    assert {
+      'possible': False,
+      'url': 'https://connect.opensuse.org/pg/profile/{}'.format(invalid_username)
     } == json_resp
 
   def test_behance_format_checking(self):
