@@ -32,6 +32,7 @@ def generate_random_character(length, first_char_letter):
 def assert_response(app, website, user, status):
   expected = get_expected_response(website, user, status)
   actual = get_response(app, website, user)
+  assert actual == expected
 
 def get_response(app, website, user):
   resp = app.get('/check/{}/{}'.format(website, user))
