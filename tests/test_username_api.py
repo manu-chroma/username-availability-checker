@@ -35,8 +35,15 @@ def assert_response(app, website, user, status):
   assert actual == expected
 
 def get_response(app, website, user):
-  resp = app.get('/check/{}/{}'.format(website, user))
-  return json.loads(resp.get_data().decode())
+  resp_bytes = app.get('/check/{}/{}'.format(website, user))
+  resp_dict = json.loads(resp_bytes.get_data().decode())
+  # this is special to facebook checking,
+  # and 'profile' field is only useful for
+  # frontend purposes. Skipping here.
+  if website == 'facebook':
+    del resp_dict['profile']
+
+  return resp_dict
 
 def get_expected_response(website, user, status):
   return {
@@ -84,12 +91,6 @@ class TestUsernameApi(object):
     expected = get_expected_response(website, user, 404)
     actual = get_response(self.app, website, user)
 
-    # this is special to facebook checking,
-    # and 'profile' field is only useful for
-    # frontend purposes. Skipping here.
-    if website == 'facebook':
-      del actual['profile']
-
     message = None
     if expected != actual:
       message = 'The provided available username ({}) returned 200'.format(user)
@@ -99,9 +100,6 @@ class TestUsernameApi(object):
       user = generate_random_username(website, username_length)
       expected = get_expected_response(website, user, 404)
       actual = get_response(self.app, website, user)
-
-      if website == 'facebook':
-        del actual['profile']
 
       if expected != actual:
         message += ' and the random username ({}) returned 200'.format(user)
