@@ -3,7 +3,10 @@ from jinja2 import Template
 import requests
 from flask.ext.cors import CORS, cross_origin
 
-app = Flask(__name__)
+app = Flask(__name__, 
+	static_url_path = '',
+	static_folder = 'static')
+
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
