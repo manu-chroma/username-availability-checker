@@ -73,10 +73,13 @@ def check_username(website, username):
 			'possible': possible,
 		}
 
-	if website in ['pinterest', 'gitlab']:
+	if website in patterns['content_verification']:
 		res  = r.get(url)
-		code = 200 if bytes(username, encoding='utf-8') in res.content \
-			else 404
+		phrase = patterns['content_verification'][website].format(u=username)
+		if bytes(phrase, encoding='utf-8') in res.content:
+			code = 200
+		else:
+			code = 404
 
 		return {
 			'status': code,
