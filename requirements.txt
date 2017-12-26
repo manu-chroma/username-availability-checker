@@ -4,4 +4,3 @@ gunicorn==19.4.5
 requests
 pyyaml==3.12
 beautifulsoup4==4.6.0
-parameterized==0.6.1
