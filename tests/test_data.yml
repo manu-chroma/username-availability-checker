@@ -88,6 +88,14 @@ openhub:
     - "nibnalin"
   available_usernames:
     - "zNRe3jx3isA8CoM"
+opensuse:
+  invalid_usernames:
+    - "$very%long{invalid}user(name)"
+  taken_usernames:
+    - "warlordfff"
+    - "biscuitsnake"
+  available_usernames:
+    - "zNRe3jx3isA8CoM"
 pinterest:
   invalid_usernames:
     - "$very%long{invalid}user(name)"

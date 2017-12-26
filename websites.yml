@@ -2,29 +2,16 @@
 urls:
   behance: https://{w}.net/{u}
   deviantart: https://{u}.{w}.com/
+  facebook: https://mbasic.{w}.com/{u}
   openhub: https://www.{w}.net/accounts/{u}
+  opensuse: https://connect.{w}.org/pg/profile/{u}
   pinterest: https://in.{w}.com/{u}
   tumblr: https://{u}.{w}.com
-  facebook: https://mbasic.{w}.com/{u}
+content_verification:
+  gitlab: "@{u}"
+  opensuse: "About me"
+  pinterest: "{u}"
 username_patterns:
-  pinterest:
-    characters: a-zA-Z0-9_
-    min_length: 3
-    max_length: 15
-  gitlab:
-    characters: a-zA-Z0-9_.-
-    min_length: 1
-    max_length: 255
-  github:
-    characters: a-zA-Z0-9-
-    min_length: 1
-    max_length: 39
-    invalid_patterns:
-      - "-{2,}"
-  tumblr:
-    characters: a-zA-Z0-9-
-    min_length: 1
-    max_length: 32
   behance:
     characters: a-zA-Z0-9_-
     min_length: 1
@@ -36,18 +23,6 @@ username_patterns:
     invalid_patterns:
       - "^-"
       - "-$"
-  instagram:
-    characters: a-zA-Z0-9_.
-    min_length: 1
-    max_length: 30
-  twitter:
-    characters: a-zA-Z0-9_
-    min_length: 5
-    max_length: 15
-  soundcloud:
-    characters: a-zA-Z0-9_-
-    min_length: 1
-    max_length: 25
   facebook:
     characters: a-z0-9A-Z.
     min_length: 5
@@ -55,12 +30,46 @@ username_patterns:
     invalid_patterns:
       - "\\.(com|net)"
       - "(\\.)\\1{1,}"  # consecutive '.' not allowed
+  gitlab:
+    characters: a-zA-Z0-9_.-
+    min_length: 1
+    max_length: 255
+  github:
+    characters: a-zA-Z0-9-
+    min_length: 1
+    max_length: 39
+    invalid_patterns:
+      - "-{2,}"
+  instagram:
+    characters: a-zA-Z0-9_.
+    min_length: 1
+    max_length: 30
   openhub:
     characters: a-zA-Z0-9_-
     min_length: 3
     max_length: 40
     invalid_patterns:
       - "^[^a-zA-Z]"
+  opensuse:
+    characters: a-zA-Z0-9_-
+    min_length: 1
+    max_length: 50
+  pinterest:
+    characters: a-zA-Z0-9_
+    min_length: 3
+    max_length: 15
+  soundcloud:
+    characters: a-zA-Z0-9_-
+    min_length: 1
+    max_length: 25
+  tumblr:
+    characters: a-zA-Z0-9-
+    min_length: 1
+    max_length: 32
+  twitter:
+    characters: a-zA-Z0-9_
+    min_length: 5
+    max_length: 15
 avatar:
   behance: false
   deviantart: opengraph
@@ -69,6 +78,7 @@ avatar:
   gitlab: opengraph
   instagram: opengraph
   openhub: false
+  opensuse: false
   pinterest:
     key: image_xlarge_url
   soundcloud: opengraph
