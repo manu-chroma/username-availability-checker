@@ -37,6 +37,9 @@
                 // username exists but the url is not accessible
                 else if (site == 'facebook' && res['profile'] == 'hidden')
                     $("#" + site)[0].innerHTML = `Taken`;
+                else if (res['avatar'])
+                    $("#" + site)[0].innerHTML =
+                    `<a href="${res['url']}" target="_blank"> <img class="avatar" src="${res['avatar']}">`;
                 else
                     $("#" + site)[0].innerHTML = `<a href="${res['url']}" target="_blank">Taken</a>`;
             })
@@ -51,9 +54,18 @@
 
             // create cards dynamically for each of the websites
             sites.forEach(website => {
-              $(".helper").append(`<div class="card">
-                <p><div class="tooltip"><i class="fa fa-${website}"></i><span class="tooltiptext">${website}</span></div>
-                <span id='${website}'><i class="fa fa-circle-o-notch fa-spin"></i></span></p>`)
+              $(".helper").append(`
+                <div class="card">
+                    <p>
+                        <div class="tooltip">
+                            <i class="fa fa-${website}"></i>
+                            <span class="tooltiptext">${website}</span>
+                        </div>
+                        <span id='${website}'>
+                            <i class="fa fa-circle-o-notch fa-spin"></i>
+                        </span>
+                    </p>
+                </div>`)
           });
 
             // iterate over all the websites and call

@@ -17,6 +17,17 @@ html,body
   text-align: center;
 }
 
+.avatar {
+  margin-left: 15px;
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1;
+  vertical-align: middle;
+  border-radius: 6px;
+  height: 45px;
+  width: 45px;
+}
+
 .card
 {
   display:inline-block;
