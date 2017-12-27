@@ -1,6 +1,6 @@
 [all]
 files = *.py, tests/*.py,
-max_line_length = 80
+max_line_length = 90
 use_spaces = True
 
 [all.whitespace]
@@ -25,12 +25,14 @@ bears = LineLengthBear
 files = static/css/*.css
 bears = LineLengthBear, SpaceConsistencyBear
 use_spaces = true
+ignore_length_regex = http #ignore links
 
 [html]
 files = templates/*.html
 bears = LineLengthBear, SpaceConsistencyBear
 use_spaces = true
-max_line_length = 700
+max_line_length = 200
+ignore_length_regex = <path #ignore svg paths
 default_actions = *: ApplyPatchAction
 
 [yaml]
