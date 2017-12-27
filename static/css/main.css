@@ -78,10 +78,10 @@ html,body
 
 .fa-openhub {
   display: inline-block;
-  height: 24px;
-  width: 24px;
-  background-image: url("https://raw.githubusercontent.com/blackducksoftware/ohloh-ui/master/public/images/openhub_twitter_24.png");
-  filter: brightness(70%) contrast(200%) grayscale(90%);
+  height: 32px;
+  width: 32px;
+  background-image: url("https://i.imgur.com/dEtInmd.png");
+  background-size: contain;
 }
 
 .fa-opensuse {
