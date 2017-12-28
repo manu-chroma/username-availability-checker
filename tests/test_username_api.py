@@ -134,6 +134,6 @@ class TestUsernameApi(object):
         json_resp = json.loads(resp.get_data().decode())
         url = username_api.get_profile_url(website, username)
         assert {
-           'possible': False,
-           'url': url
+            'possible': False,
+            'url': url
         } == json_resp
