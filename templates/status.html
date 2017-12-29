@@ -47,7 +47,7 @@
 
         function main ()  {
             // list of supported websites
-            var sites = ["facebook", "twitter", "instagram", "github", "soundcloud", "pinterest", "tumblr", "behance", "gitlab", "openhub", "deviantart", "opensuse"];
+            var sites = "{{sites}}".split(" ");
 
             // create cards dynamically for each of the websites
             sites.forEach(website => {
