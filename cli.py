@@ -1,8 +1,9 @@
+import yaml
 from username_api import check_username
 
-sites = list(map(lambda x: '{}.com'.format(x),
-                 'facebook twitter instagram'
-                 'github youtube soundcloud tumblr'.split()))
+patterns = yaml.load(open('websites.yml'))
+
+sites = list(patterns['username_patterns'].keys())
 
 
 def main():
