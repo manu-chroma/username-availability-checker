@@ -14,7 +14,7 @@ content_verification:
 username_patterns:
   behance:
     characters: a-zA-Z0-9_-
-    min_length: 1
+    min_length: 3
     max_length: 30
   deviantart:
     characters: a-zA-Z0-9-
@@ -52,7 +52,7 @@ username_patterns:
       - "^[^a-zA-Z]"
   opensuse:
     characters: a-zA-Z0-9_-
-    min_length: 1
+    min_length: 2
     max_length: 50
   pinterest:
     characters: a-zA-Z0-9_
