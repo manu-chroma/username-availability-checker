@@ -1,10 +1,9 @@
+import collections
 import json
-import logging
 import os.path
-import random
-import string
 
 from parameterized import parameterized
+import exrex
 import pytest
 import yaml
 
@@ -13,23 +12,51 @@ import username_api
 data = yaml.load(open(os.path.join('tests', 'test_data.yml')))
 websites = yaml.load(open('websites.yml'))
 
-invalid_username = '$very%long{invalid}user(name)'
+AvailabilityTestCase = collections.namedtuple(
+    'AvailabilityTestCase',
+    'website username')
+
+
+@pytest.fixture(params=data.keys())
+def random_available_min_username(request):
+    """
+        Pytest fixture for loading test case
+        which has available username of minimum length.
+
+    """
+    return AvailabilityTestCase(
+        request.param,
+        generate_random_valid_username(
+            request.param,
+            websites['username_patterns'][request.param]['available_min_length']))
 
 
 def generate_random_username(website, length):
-    first_char_letter = False
-    if website == 'openhub':
-        first_char_letter = True
-    return ''.join(generate_random_character(length,
-                                             first_char_letter))
+    """
+        generate_random_username is a generator that generates
+        random username for specific website and length.
+        It could be invalid username.
+    """
+    username_pattern = websites['username_patterns'][website]
+    # This range(100) is a temporary workaround to avoid looping forever
+    # which is caused by generating random values.
+    for _ in range(100):
+        yield exrex.getone('[{chars}]{{{len}}}'.format(
+            chars=username_pattern['characters'],
+            len=length))
 
 
-def generate_random_character(length, first_char_letter):
-    for i in range(length):
-        if first_char_letter and i == 0:
-            yield random.choice(string.ascii_letters)
-        else:
-            yield random.choice(string.ascii_letters + string.digits)
+def generate_random_valid_username(website, length):
+    """
+        generate_random_valid_username works like generate_random_username
+        but it only returns valid username.
+        it raise Exception if it cannot generate valid username
+    """
+    for random_username in generate_random_username(website, length):
+        if username_api.check_format(website, random_username):
+            return random_username
+    raise Exception('Cannot generate valid username for username for {} of length {}',
+                    website, length)
 
 
 def assert_response(app, website, user, status):
@@ -67,6 +94,12 @@ def load_availability_test_cases(status):
             usernames = data[website]['available_usernames']
         if status == 'taken_username':
             usernames = data[website]['taken_usernames']
+        if status == 'random_max_username':
+            usernames = [
+                generate_random_valid_username(
+                    website,
+                    websites['username_patterns'][website]['max_length'])
+                ]
         res.extend((website, user) for user in usernames)
 
     return res
@@ -97,30 +130,19 @@ class TestUsernameApi(object):
     @parameterized.expand(load_availability_test_cases('available_username'),
                           testcase_func_name=custom_name_func)
     def test_available_username(self, website, user):
-        expected = get_expected_response(website, user, 404)
-        actual = get_response(self.app, website, user)
+        assert_response(self.app, website, user, 404)
 
-        message = None
-        if expected != actual:
-            message = 'The provided available username ({}) returned 200'.format(
-                user)
-            username_pattern = self.websites['username_patterns'][website]
-            username_length = 15
+    @parameterized.expand(load_availability_test_cases('random_max_username'),
+                          testcase_func_name=custom_name_func)
+    def test_random_max_username(self, website, user):
+        assert_response(self.app, website, user, 404)
 
-            user = generate_random_username(website, username_length)
-            expected = get_expected_response(website, user, 404)
-            actual = get_response(self.app, website, user)
-
-            if expected != actual:
-                message += ' and the random username ({}) returned 200'.format(
-                    user)
-            else:
-                message += ' but {} is still available'.format(user)
-
-        if message is not None:
-            logging.getLogger().warning(message)
-
-        assert expected == actual
+    @pytest.mark.flaky(reruns=10)
+    def test_random_available_min_username(self, random_available_min_username):
+        assert_response(self.app,
+                        random_available_min_username.website,
+                        random_available_min_username.username,
+                        404)
 
     @parameterized.expand(load_availability_test_cases('taken_username'),
                           testcase_func_name=custom_name_func)

@@ -69,12 +69,12 @@ username_patterns:
     max_length: 15
   soundcloud:
     characters: a-zA-Z0-9_-
-    available_min_length: 3
+    available_min_length: 5
     min_length: 1
     max_length: 25
   tumblr:
     characters: a-zA-Z0-9-
-    available_min_length: 3
+    available_min_length: 5
     min_length: 1
     max_length: 32
   twitter:
