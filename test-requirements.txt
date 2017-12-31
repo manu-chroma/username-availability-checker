@@ -1,4 +1,6 @@
 pytest
+pytest-rerunfailures
 parameterized==0.6.1
+exrex==0.10.5
 coala
 coala-bears
