@@ -14,10 +14,12 @@ content_verification:
 username_patterns:
   behance:
     characters: a-zA-Z0-9_-
+    available_min_length: 4
     min_length: 3
     max_length: 30
   deviantart:
     characters: a-zA-Z0-9-
+    available_min_length: 5
     min_length: 3
     max_length: 20
     invalid_patterns:
@@ -25,6 +27,7 @@ username_patterns:
       - "-$"
   facebook:
     characters: a-z0-9A-Z.
+    available_min_length: 6
     min_length: 5
     max_length: 50
     invalid_patterns:
@@ -32,42 +35,51 @@ username_patterns:
       - "(\\.)\\1{1,}"  # consecutive '.' not allowed
   gitlab:
     characters: a-zA-Z0-9_.-
+    available_min_length: 4
     min_length: 1
     max_length: 255
   github:
     characters: a-zA-Z0-9-
+    available_min_length: 5
     min_length: 1
     max_length: 39
     invalid_patterns:
       - "-{2,}"
   instagram:
     characters: a-zA-Z0-9_.
+    available_min_length: 5
     min_length: 1
     max_length: 30
   openhub:
     characters: a-zA-Z0-9_-
+    available_min_length: 4
     min_length: 3
     max_length: 40
     invalid_patterns:
       - "^[^a-zA-Z]"
   opensuse:
     characters: a-zA-Z0-9_-
+    available_min_length: 3
     min_length: 2
     max_length: 50
   pinterest:
     characters: a-zA-Z0-9_
+    available_min_length: 4
     min_length: 3
     max_length: 15
   soundcloud:
     characters: a-zA-Z0-9_-
+    available_min_length: 3
     min_length: 1
     max_length: 25
   tumblr:
     characters: a-zA-Z0-9-
+    available_min_length: 3
     min_length: 1
     max_length: 32
   twitter:
     characters: a-zA-Z0-9_
+    available_min_length: 6
     min_length: 5
     max_length: 15
 avatar:
