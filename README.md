@@ -13,6 +13,17 @@ eg: https://username-availabilty.herokuapp.com/check/facebook/yolo
 pip install -r requirements.txt
 ```
 
+### Set .env
+Copy and rename .env.copy to .env by:
+```
+Unix or Linux:
+cp .env.copy .env
+Windows:
+copy .env.copy .env
+```
+
+And edit config with your favorite editor
+
 ### Running script in terminal/command prompt
 ```
 python cli.py
