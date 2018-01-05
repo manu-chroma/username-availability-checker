@@ -1,5 +1,6 @@
 ---
 urls:
+  asciinema: https://{w}.org/~{u}
   behance: https://{w}.net/{u}
   deviantart: https://{u}.{w}.com/
   facebook: https://mbasic.{w}.com/{u}
@@ -12,6 +13,11 @@ content_verification:
   opensuse: "About me"
   pinterest: "{u}"
 username_patterns:
+  asciinema:
+    characters: a-zA-Z0-9-
+    available_min_length: 2
+    min_length: 2
+    max_length: 16
   behance:
     characters: a-zA-Z0-9_-
     available_min_length: 4
@@ -83,6 +89,7 @@ username_patterns:
     min_length: 5
     max_length: 15
 avatar:
+  asciinema: false
   behance: false
   deviantart: opengraph
   facebook: opengraph
