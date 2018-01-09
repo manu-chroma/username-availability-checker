@@ -89,7 +89,7 @@ avatar:
   github: opengraph
   gitlab: opengraph
   instagram: opengraph
-  openhub: false
+  openhub: openhub
   opensuse: false
   pinterest:
     key: image_xlarge_url
