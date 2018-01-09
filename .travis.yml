@@ -15,7 +15,6 @@ before_install:
 
 script:
   - python -m pytest -s -v
-  - pip install click==6.6
   - coala --non-interactive -V
 
 notifications:
