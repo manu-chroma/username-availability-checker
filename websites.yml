@@ -90,7 +90,7 @@ avatar:
   gitlab: opengraph
   instagram: opengraph
   openhub: openhub
-  opensuse: false
+  opensuse: opensuse
   pinterest:
     key: image_xlarge_url
   soundcloud: opengraph

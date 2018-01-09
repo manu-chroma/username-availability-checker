@@ -50,6 +50,13 @@ def get_avatar(website, username):
         img = soup.select('#account_icon > img')
         src = img[0]['src']
         return src
+    elif data == 'opensuse':
+        # Parse the openSUSE profile page
+        page = r.get(get_profile_url('opensuse', username))
+        soup = BeautifulSoup(page.content, 'html.parser')
+        img = soup.select('#profile_icon_wrapper > img')
+        src = img[0]['src']
+        return src
     elif 'key' in data:
         # Searches for "`key`": "`link`"
         regex = re.compile('[\'\"]' + re.escape(data['key']) +
