@@ -45,7 +45,7 @@ def get_avatar(website, username):
         result = result[0]
     elif data == 'openhub':
         # Parse the Open Hub profile page
-        page = r.get(f'https://www.openhub.net/accounts/{username}')
+        page = r.get(get_profile_url('openhub', username))
         soup = BeautifulSoup(page.content, 'html.parser')
         img = soup.select('#account_icon > img')
         src = img[0]['src']
