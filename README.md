@@ -2,9 +2,9 @@
 A web app by [Gyan Lakhwani](https://github.com/gyanl), [Manvendra Singh](https://github.com/manu-chroma) and others to check if a username is taken on various popular websites (such as Twitter, Instagram, Soundcloud, Github etc.). Hosted on https://username-check.herokuapp.com/   
 
 ## API endpoint
-- Hosted on https://username-availabilty.herokuapp.com/   
-- How to query: ```https://username-availabilty.herokuapp.com/check/<website name>/<username>/  ```   
-eg: https://username-availabilty.herokuapp.com/check/facebook/yolo
+- Hosted on https://username-availability.herokuapp.com/
+- How to query: https://username-availability.herokuapp.com/check/<website name>/``<username>/``
+eg: https://username-availability.herokuapp.com/check/facebook/yolo
 
 ## Setup
 
@@ -15,10 +15,13 @@ pip install -r requirements.txt
 
 ### Set .env
 Copy and rename .env.copy to .env by:
+
+- Unix or Linux:
 ```
-Unix or Linux:
 cp .env.copy .env
-Windows:
+```
+- Windows:
+```
 copy .env.copy .env
 ```
 
