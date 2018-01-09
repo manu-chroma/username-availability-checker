@@ -1,4 +1,13 @@
 ---
+asciinema:
+  invalid_usernames:
+    - "$very%long{invalid}user(name)"
+  taken_usernames:
+    - "john"
+    - "kevin"
+    - "david"
+  available_usernames:
+    - "zNRe3jx3isA8CoM"
 deviantart:
   invalid_usernames:
     - "$very%long{invalid}user(name)"
