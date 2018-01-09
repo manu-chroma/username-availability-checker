@@ -80,6 +80,7 @@ def get_response(app, website, user):
 def get_expected_response(website, user, status):
     return {
         'possible': True,
+        'usable': True,
         'status': status,
         'url': username_api.get_profile_url(website, user),
         'avatar': username_api.get_avatar(website, user) if status == 200
@@ -157,5 +158,6 @@ class TestUsernameApi(object):
         url = username_api.get_profile_url(website, username)
         assert {
             'possible': False,
+            'usable': True,
             'url': url
         } == json_resp

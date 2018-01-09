@@ -5,12 +5,15 @@ import yaml
 from bs4 import BeautifulSoup
 from flask import Flask, jsonify
 from flask.ext.cors import CORS, cross_origin
+from werkzeug.contrib.cache import SimpleCache
 
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 patterns = yaml.load(open('websites.yml'))
+
+cache = SimpleCache()
 
 
 def get_profile_url(website, username):
@@ -63,24 +66,45 @@ def get_avatar(website, username):
     return result
 
 
-def check_username(website, username):
+def get_status_code(website, username):
     url = get_profile_url(website, username)
-
-    possible = check_format(website, username)
-
-    if not possible:
-        return {
-            'url': url,
-            'possible': possible,
-        }
 
     if website in patterns['content_verification']:
         res = r.get(url)
         phrase = patterns['content_verification'][website].format(u=username)
         if bytes(phrase, encoding='utf-8') in res.content:
-            code = 200
+            return 200
         else:
-            code = 404
+            return 404
+
+    else:
+        return r.get(url).status_code
+
+
+def check_username(website, username):
+    url = get_profile_url(website, username)
+
+    usable = check_usable(website)
+
+    possible = check_format(website, username)
+
+    if not usable:
+        return {
+            'url': url,
+            'possible': possible,
+            'usable': usable,
+        }
+
+    if not possible:
+        return {
+            'url': url,
+            'possible': possible,
+            'usable': usable,
+        }
+
+    code = get_status_code(website, username)
+
+    if website in patterns['content_verification']:
 
         return {
             'status': code,
@@ -88,11 +112,12 @@ def check_username(website, username):
             'avatar': get_avatar(website, username) if code == 200
             else None,
             'possible': possible,
+            'usable': usable,
         }
 
     elif website == 'facebook':
         res = r.get(url)
-        code = res.status_code
+
         # Using mfacebook for checking username,
         # when a username exists but hidden from
         # search engines, it gives a login redirect
@@ -110,6 +135,7 @@ def check_username(website, username):
             'avatar': get_avatar(website, username),
             'possible': possible,
             'profile': profile,
+            'usable': usable,
         }
 
     else:
@@ -118,7 +144,33 @@ def check_username(website, username):
             'url': url,
             'avatar': get_avatar(website, username),
             'possible': possible,
+            'usable': usable,
         }
+
+
+def check_usable(website):
+    """
+        Check if the website is usable.
+        It works by checking if known taken username is shown as available.
+        The checking will be cached in memory for 10 minutes.
+    """
+
+    identifier = 'usable_{}'.format(website)
+
+    usable = cache.get(identifier)
+    if usable is not None:
+        return usable
+
+    constant_username = patterns['constant_usernames'][website]
+
+    code = get_status_code(website, constant_username)
+
+    if code == 404 or code == 301:
+        usable = False
+    usable = True
+    cache.set(identifier, usable, timeout=60*10)
+
+    return usable
 
 
 def check_format(website, username):
