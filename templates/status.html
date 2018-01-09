@@ -29,7 +29,9 @@
             })
             .then((result) => {
                 var res = result;
-                if (!res['possible'])
+                if (!res['usable'])
+                    $("#" + site)[0].innerHTML = 'Website Down';
+                else if (!res['possible'])
                     $("#" + site)[0].innerHTML = 'Impossible';
                 else if (res['status'] == '404' || res['status'] == '301')
                     $("#" + site)[0].innerHTML = 'Available';

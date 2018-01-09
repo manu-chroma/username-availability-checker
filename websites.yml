@@ -12,6 +12,20 @@ content_verification:
   gitlab: "Snippets"
   opensuse: "About me"
   pinterest: "{u}"
+constant_usernames:
+  asciinema: "john"
+  behance: "seeeturtle"
+  deviantart: "joshua"
+  facebook: "gyanlakhwani"
+  github: "seeeturtle"
+  gitlab: "andrewda"
+  instagram: "ElonMusk"
+  openhub: "seeeturtle"
+  opensuse: "biscuitsnake"
+  pinterest: "steve"
+  soundcloud: "postmalone"
+  tumblr: "steve"
+  twitter: "ElonMusk"
 username_patterns:
   asciinema:
     characters: a-zA-Z0-9-
