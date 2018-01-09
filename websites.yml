@@ -9,7 +9,7 @@ urls:
   pinterest: https://in.{w}.com/{u}
   tumblr: https://{u}.{w}.com
 content_verification:
-  gitlab: "@{u}"
+  gitlab: "Snippets"
   opensuse: "About me"
   pinterest: "{u}"
 username_patterns:
