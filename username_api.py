@@ -44,8 +44,7 @@ def get_avatar(website, username):
             return None
         result = result[0]
     elif 'html_selector' in data:
-        page = r.get(get_profile_url(website, username))
-        soup = BeautifulSoup(page.content, 'html.parser')
+        soup = BeautifulSoup(response.content, 'html.parser')
         img = soup.select(data['html_selector'])
         src = img[0]['src']
         return src
