@@ -46,6 +46,11 @@ def get_avatar(website, username):
         if not result or not result[0]:
             return None
         result = result[0]
+    elif 'html_selector' in data:
+        soup = BeautifulSoup(response.text, 'html.parser')
+        img = soup.select(data['html_selector'])
+        src = img[0]['src']
+        return src
     elif 'key' in data:
         # Searches for "`key`": "`link`"
         regex = re.compile('[\'\"]' + re.escape(data['key']) +
