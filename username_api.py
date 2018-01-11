@@ -43,18 +43,10 @@ def get_avatar(website, username):
         if not result or not result[0]:
             return None
         result = result[0]
-    elif data == 'openhub':
-        # Parse the Open Hub profile page
-        page = r.get(get_profile_url('openhub', username))
+    elif 'html_selector' in data:
+        page = r.get(get_profile_url(website, username))
         soup = BeautifulSoup(page.content, 'html.parser')
-        img = soup.select('#account_icon > img')
-        src = img[0]['src']
-        return src
-    elif data == 'opensuse':
-        # Parse the openSUSE profile page
-        page = r.get(get_profile_url('opensuse', username))
-        soup = BeautifulSoup(page.content, 'html.parser')
-        img = soup.select('#profile_icon_wrapper > img')
+        img = soup.select(data['html_selector'])
         src = img[0]['src']
         return src
     elif 'key' in data:

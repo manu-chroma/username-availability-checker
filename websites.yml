@@ -89,8 +89,10 @@ avatar:
   github: opengraph
   gitlab: opengraph
   instagram: opengraph
-  openhub: openhub
-  opensuse: opensuse
+  openhub:
+    html_selector: '#account_icon > img'
+  opensuse:
+    html_selector: '#profile_icon_wrapper > img'
   pinterest:
     key: image_xlarge_url
   soundcloud: opengraph
