@@ -172,7 +172,8 @@ def check_usable(website):
 
     if code == 404 or code == 301:
         usable = False
-    usable = True
+    else:
+        usable = True
     cache.set(identifier, usable, timeout=60*10)
 
     return usable
