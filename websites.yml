@@ -97,6 +97,9 @@ username_patterns:
     available_min_length: 5
     min_length: 1
     max_length: 32
+    invalid_patterns:
+      - "^-"
+      - "-$"
   twitter:
     characters: a-zA-Z0-9_
     available_min_length: 6
