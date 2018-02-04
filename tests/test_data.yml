@@ -89,6 +89,14 @@ tumblr:
     - "steve"
   available_usernames:
     - "zNRe3jx3isA8CoM"
+medium:
+  invalid_usernames:
+    - "$very%long{invalid}user(name)"
+  taken_usernames:
+    - "MediumStaff"
+    - "Medium"
+  available_usernames:
+    - "zNRe3jx3isA8CoM"
 openhub:
   invalid_usernames:
     - "$very%long{invalid}user(name)"
