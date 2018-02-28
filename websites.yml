@@ -67,6 +67,8 @@ username_patterns:
     max_length: 39
     invalid_patterns:
       - "-{2,}"
+      - "^-"
+      - "-$"
   instagram:
     characters: a-zA-Z0-9_.
     available_min_length: 5
