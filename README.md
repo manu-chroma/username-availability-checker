@@ -1,4 +1,6 @@
 # username-availability-checker
+
+[![Join the chat at https://gitter.im/username-availability-checker/Lobby](https://badges.gitter.im/username-availability-checker/Lobby.svg)](https://gitter.im/username-availability-checker/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 A web app by [Gyan Lakhwani](https://github.com/gyanl), [Manvendra Singh](https://github.com/manu-chroma) and others to check if a username is taken on various popular websites (such as Twitter, Instagram, Soundcloud, Github etc.). Hosted on https://username-check.herokuapp.com/   
 
 ## API endpoint
