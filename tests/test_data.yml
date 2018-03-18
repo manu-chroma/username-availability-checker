@@ -93,7 +93,6 @@ medium:
   invalid_usernames:
     - "$very%long{invalid}user(name)"
   taken_usernames:
-    - "MediumStaff"
     - "Medium"
   available_usernames:
     - "zNRe3jx3isA8CoM"
