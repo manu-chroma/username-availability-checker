@@ -1,7 +1,6 @@
 import os.path
 
 import pytest
-import requests as r
 import yaml
 from parameterized import parameterized
 
@@ -43,7 +42,7 @@ class TestGetAvatar(object):
         if not user:
             pytest.skip('website not supported')
         link = username_api.check_username(website, user)['avatar']
-        response = r.get(link)
+        response = username_api.session.get(link)
         assert (response.headers.get('content-type', '').startswith('image/') or
                 response.headers.get('content-type') ==
                 'application/octet-stream')
