@@ -15,6 +15,9 @@ patterns = yaml.load(open('websites.yml'))
 
 cache = SimpleCache()
 
+# This session is for injecting cookies into requests (https://github.com/manu-chroma/username-availability-checker/issues/79)
+session = r.Session()
+
 
 def get_profile_url(website, username):
     return patterns['urls'].get(website, 'https://{w}.com/{u}').format(
@@ -33,7 +36,7 @@ def get_avatar(website, username):
     if 'url' in data:
         url = data['url'].format(u=username)
 
-    response = r.get(url)
+    response = session.get(url)
     if response.status_code == 404:
         return None
 
@@ -75,7 +78,7 @@ def get_status_code(website, username):
     url = get_profile_url(website, username)
 
     if website in patterns['content_verification']:
-        res = r.get(url)
+        res = session.get(url)
         phrase = patterns['content_verification'][website].format(u=username)
         if bytes(phrase, encoding='utf-8') in res.content:
             return 200
@@ -83,7 +86,7 @@ def get_status_code(website, username):
             return 404
 
     else:
-        return r.get(url).status_code
+        return session.get(url).status_code
 
 
 def check_username(website, username):
@@ -121,7 +124,7 @@ def check_username(website, username):
         }
 
     elif website == 'facebook':
-        res = r.get(url)
+        res = session.get(url)
 
         # Using mfacebook for checking username,
         # when a username exists but hidden from
@@ -145,7 +148,7 @@ def check_username(website, username):
 
     else:
         return {
-            'status': r.get(url).status_code,
+            'status': session.get(url).status_code,
             'url': url,
             'avatar': get_avatar(website, username),
             'possible': possible,
