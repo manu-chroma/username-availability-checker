@@ -13,6 +13,8 @@ __pycache__/
 
 *.orig
 
+*.before
+
 .env
 
 static/logs.log
