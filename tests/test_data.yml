@@ -17,6 +17,14 @@ deviantart:
     - "john"
   available_usernames:
     - "zNRe3jx3isA8CoM"
+disqus:
+  invalid_usernames:
+    - "$very%long{invalid}user(name)"
+  taken_usernames:
+    - "seeeturtle"
+    - "john"
+  available_usernames:
+    - "zNRe3jx3isA8CoM"
 facebook:
   avatar_usernames:
     - "brianchesky"
