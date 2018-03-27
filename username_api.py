@@ -15,7 +15,8 @@ patterns = yaml.load(open('websites.yml'))
 
 cache = SimpleCache()
 
-# This session is for injecting cookies into requests (https://github.com/manu-chroma/username-availability-checker/issues/79)
+# This session is for injecting cookies into requests
+# Discussion: github.com/manu-chroma/username-availability-checker/issues/79
 session = r.Session()
 
 
