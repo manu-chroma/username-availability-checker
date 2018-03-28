@@ -18,6 +18,10 @@ cache = SimpleCache()
 # This session is for injecting cookies into requests
 # Discussion: github.com/manu-chroma/username-availability-checker/issues/79
 session = r.Session()
+session.headers.update({
+    'User-Agent': ('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 '
+                   '(KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36')
+})
 
 
 def get_profile_url(website, username):
