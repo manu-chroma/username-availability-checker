@@ -58,7 +58,7 @@ def get_avatar(website, username):
     elif 'key' in data:
         # Searches for "`key`": "`link`"
         regex = re.compile('[\'\"]' + re.escape(data['key']) +
-                           '[\'\"]:(\s)?[\'\"](?P<link>[^\s]+)[\'\"]')
+                           r'[\'\"]:(\s)?[\'\"](?P<link>[^\s]+)[\'\"]')
         result = re.search(regex, response.text)
         if not result:
             return None
