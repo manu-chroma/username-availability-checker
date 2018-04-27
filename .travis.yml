@@ -16,7 +16,7 @@ before_install:
   - cat test-requirements.txt >> requirements.txt
 
 script:
-  - python -m pytest -s -vv
+  - python -m pytest -vv
   - coala --non-interactive -V
 
 notifications:
