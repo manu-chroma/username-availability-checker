@@ -1,7 +1,11 @@
 import re
+import logging
+import os
+import uuid
 
 import requests as r
 import yaml
+from requests_toolbelt.utils import dump
 from bs4 import BeautifulSoup
 from flask import Flask, jsonify
 from flask.ext.cors import CORS, cross_origin
@@ -42,6 +46,29 @@ class DebugFilter(logging.Filter):
 logger.addFilter(DebugFilter())
 
 
+def log_response(msg, response, website, username):
+    """
+    Dump response and log message with warning level.
+
+    requests_toolbet.utils.dump.dump_all is used for dumping response.
+    The dump file will be located under statics/errors.
+    Also, the file name will be {website}_{username}_{id}.dump.
+    Generate directory if it doesn't exist.
+    """
+    # Generates unique id for this response.
+    id = uuid.uuid4().hex
+
+    filename = 'static/errors/{}_{}_{}.dump'.format(website, username, id)
+
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
+
+    with open(filename, 'w') as f:
+        # Note: https://toolbelt.readthedocs.io/en/latest/dumputils.html
+        f.write(dump.dump_all(response).decode('utf-8'))
+
+    logger.warning('%s\nid: %s', msg, id)
+
+
 def get_profile_url(website, username):
     return patterns['urls'].get(website, 'https://{w}.com/{u}').format(
         w=website,
@@ -62,6 +89,11 @@ def get_avatar(website, username):
 
     response = session.get(url)
     if response.status_code == 404:
+        log_response(
+            'Status code of response for {}/{} is 404'.format(website, username),
+            response,
+            website,
+            username)
         return None
 
     if data == 'opengraph':
@@ -71,6 +103,12 @@ def get_avatar(website, username):
                   if item.has_attr('property') and
                   item.attrs['property'].lower() == 'og:image']
         if not result or not result[0]:
+            log_response(
+                'There is no opengraph image found for {}/{}'.format(
+                    website, username),
+                response,
+                website,
+                username)
             return None
         result = result[0]
     elif 'html_selector' in data:
@@ -87,11 +125,21 @@ def get_avatar(website, username):
                            r'[\'\"]:(\s)?[\'\"](?P<link>[^\s]+)[\'\"]')
         result = re.search(regex, response.text)
         if not result:
+            log_response(
+                'There is no match found for {}/{}'.format(website, username),
+                response,
+                website,
+                username)
             return None
         result = result.group('link')
     elif response.headers.get('content-type', '').startswith('image/'):
         return url
     else:
+        log_response(
+            'Not expected result: {}/{}'.format(website, username),
+            response,
+            website,
+            username)
         return None
 
     # Fix relative links
