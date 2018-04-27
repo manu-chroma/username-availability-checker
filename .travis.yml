@@ -19,5 +19,8 @@ script:
   - python -m pytest -vv
   - coala --non-interactive -V
 
+after_failure:
+  - tail -n +1 -- static/errors/*.dump
+
 notifications:
   email: false
