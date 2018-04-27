@@ -28,6 +28,20 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 
+class DebugFilter(logging.Filter):
+    """
+    DebugFilter only logs if class variable DEBUG is True.
+    """
+
+    DEBUG = False
+
+    def filter(self, record):
+        return DebugFilter.DEBUG  # assumes that DEBUG is always boolean
+
+
+logger.addFilter(DebugFilter())
+
+
 def get_profile_url(website, username):
     return patterns['urls'].get(website, 'https://{w}.com/{u}').format(
         w=website,
