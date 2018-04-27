@@ -34,6 +34,13 @@ def custom_name_func(testcase_func, param_num, param):
     )
 
 
+@pytest.fixture(scope='module')
+def debug():
+    username_api.DebugFilter.DEBUG = True
+    yield
+    username_api.DebugFilter.DEBUG = False
+
+
 class TestGetAvatar(object):
 
     @parameterized.expand(load_test_cases('with_avatar'),
