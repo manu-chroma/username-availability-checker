@@ -19,6 +19,14 @@ cache = SimpleCache()
 # Discussion: github.com/manu-chroma/username-availability-checker/issues/79
 session = r.Session()
 
+logger = logging.getLogger(__name__)
+handler = logging.StreamHandler()
+formatter = logging.Formatter('[%(levelname)s|%(filename)s:%(lineno)s] '
+                              '%(asctime)s %(message)s')
+handler.setLevel(logging.WARNING)
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+
 
 def get_profile_url(website, username):
     return patterns['urls'].get(website, 'https://{w}.com/{u}').format(
@@ -31,6 +39,7 @@ def get_avatar(website, username):
     data = patterns['avatar'][website]
 
     if not data:
+        logger.warning('There is no avatar data for {}'.format(website))
         return None
 
     url = get_profile_url(website, username)
