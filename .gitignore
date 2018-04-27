@@ -16,3 +16,4 @@ __pycache__/
 .env
 
 static/logs.log
+static/errors/*
