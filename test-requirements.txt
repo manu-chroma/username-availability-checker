@@ -5,3 +5,4 @@ parameterized==0.6.1
 exrex==0.10.5
 coala
 coala-bears
+requests-toolbelt==0.8.0
