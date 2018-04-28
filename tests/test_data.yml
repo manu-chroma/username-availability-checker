@@ -51,6 +51,15 @@ gitlab:
     - "Rohanvdhulla"
   available_usernames:
     - "zNRe3jx3isA8CoM"
+keybase:
+  invalid_usernames:
+    - "$very%long{invalid}user(name)"
+  taken_usernames:
+    - "jayvdb"
+    - "chris"
+    - "ayoubd"
+  available_usernames:
+    - "zNRe3jx3isA8CoM"
 soundcloud:
   invalid_usernames:
     - "$very%long{invalid}user(name)"
