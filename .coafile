@@ -15,8 +15,10 @@ preferred_quotation = '
 default_actions = *: ApplyPatchAction
 
 [all.autopep8]
-bears = PEP8Bear, PycodestyleBear
+bears = PEP8Bear, PycodestyleBear, PyDocStyleBear
 default_actions = PEP8Bear: ApplyPatchAction
+pydocstyle_ignore = D100, D101, D102, D103, D104, D105, D106, D107,
+D200, D203, D212, D213
 
 [all.linelength]
 bears = LineLengthBear
