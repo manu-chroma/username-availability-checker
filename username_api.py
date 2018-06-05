@@ -158,12 +158,11 @@ def check_username(website, username):
 
 
 def check_usable(website):
-    """
-        Check if the website is usable.
-        It works by checking if known taken username is shown as available.
-        The checking will be cached in memory for 10 minutes.
-    """
+    """Check if the website is usable.
 
+    It works by checking if known taken username is shown as available.
+    The checking will be cached in memory for 10 minutes.
+    """
     identifier = 'usable_{}'.format(website)
 
     usable = cache.get(identifier)
@@ -184,9 +183,9 @@ def check_usable(website):
 
 
 def check_format(website, username):
-    """Check the format of a username depending on the website
     """
-
+    Check the format of a username depending on the website.
+    """
     website_parts = patterns['username_patterns'][website]
 
     if 'invalid_patterns' in website_parts:
