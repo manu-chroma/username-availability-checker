@@ -158,7 +158,8 @@ def check_username(website, username):
 
 
 def check_usable(website):
-    """Check if the website is usable.
+    """
+    Check if the website is usable.
 
     It works by checking if known taken username is shown as available.
     The checking will be cached in memory for 10 minutes.
