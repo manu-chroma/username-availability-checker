@@ -19,7 +19,8 @@ AvailabilityTestCase = collections.namedtuple(
 
 @pytest.fixture(params=data.keys())
 def random_available_min_username(request):
-    """Pytest fixture for loading test case.
+    """
+    Pytest fixture for loading test case.
 
     This contains available username of minimum length.
     """
@@ -31,7 +32,8 @@ def random_available_min_username(request):
 
 
 def generate_random_username(website, length):
-    """Generate random username for specific website and length.
+    """
+    Generate random username for specific website and length.
 
     Note that the result could be invalid username.
     """
@@ -45,7 +47,8 @@ def generate_random_username(website, length):
 
 
 def generate_random_valid_username(website, length):
-    """Generate valid random username for specific website and length.
+    """
+    Generate valid random username for specific website and length.
 
     generate_random_valid_username works like generate_random_username
     but it only returns valid username.
