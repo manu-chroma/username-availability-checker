@@ -1,7 +1,9 @@
 import yaml
+import os
 from username_api import check_username
 
-patterns = yaml.load(open('websites.yml'))
+yaml_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'websites.yml')
+patterns = yaml.load(open(yaml_path))
 
 sites = list(patterns['username_patterns'].keys())
 

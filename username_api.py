@@ -1,4 +1,5 @@
 import re
+import os
 
 import requests as r
 import yaml
@@ -11,7 +12,8 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-patterns = yaml.load(open('websites.yml'))
+yaml_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'websites.yml')
+patterns = yaml.load(open(yaml_path))
 
 cache = SimpleCache()
 
