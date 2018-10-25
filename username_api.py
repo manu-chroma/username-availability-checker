@@ -53,7 +53,10 @@ def get_avatar(website, username):
     elif 'html_selector' in data:
         soup = BeautifulSoup(response.text, 'html.parser')
         images = soup.select(data['html_selector'])
-        src = images[0]['src']
+        if website == 'gravatar':
+            src = images[0]['href']
+        else:
+            src = images[0]['src']
         return src
     elif 'key' in data:
         # Searches for "`key`": "`link`"

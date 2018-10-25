@@ -4,6 +4,7 @@ urls:
   behance: https://{w}.net/{u}
   deviantart: https://{u}.{w}.com/
   facebook: https://mbasic.{w}.com/{u}
+  gravatar: https://en.{w}.com/{u}
   keybase: https://{w}.io/{u}
   medium: https://{w}.com/@{u}
   openhub: https://www.{w}.net/accounts/{u}
@@ -21,6 +22,7 @@ constant_usernames:
   facebook: "gyanlakhwani"
   github: "seeeturtle"
   gitlab: "andrewda"
+  gravatar: "kaiusesthis"
   instagram: "ElonMusk"
   keybase: "jayvdb"
   medium: "MediumStaff"
@@ -71,6 +73,11 @@ username_patterns:
       - "-{2,}"
       - "^-"
       - "-$"
+  gravatar:
+    characters: a-zA-Z0-9
+    available_min_length: 4
+    min_length: 4
+    max_length: 50
   instagram:
     characters: a-zA-Z0-9_.
     available_min_length: 5
@@ -131,6 +138,8 @@ avatar:
   facebook: opengraph
   github: opengraph
   gitlab: opengraph
+  gravatar:
+    html_selector: ".photo-0"
   instagram: opengraph
   keybase: opengraph
   medium: opengraph

@@ -91,6 +91,13 @@ behance:
     - "andrewda"
   available_usernames:
     - "zNRe3jx3isA8CoM"
+gravatar:
+  invalid_usernames:
+    - "$very%long{invalid}user(name)"
+  taken_usernames:
+    - "kaiusesthis"
+  available_usernames:
+    - "zNRe3jx3isA8CoM"
 tumblr:
   invalid_usernames:
     - "$very%long{invalid}user(name)"
