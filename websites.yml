@@ -11,10 +11,12 @@ urls:
   opensuse: https://connect.{w}.org/pg/profile/{u}
   pinterest: https://in.{w}.com/{u}
   tumblr: https://{u}.{w}.com
+  wikimedia: http://meta.{w}.org/wiki/Special:CentralAuth/{u}
 content_verification:
   gitlab: "Snippets"
   opensuse: "About me"
   pinterest: "{u}"
+  wikimedia: "Registered"
 constant_usernames:
   asciinema: "john"
   behance: "seeeturtle"
@@ -32,6 +34,7 @@ constant_usernames:
   soundcloud: "postmalone"
   tumblr: "steve"
   twitter: "ElonMusk"
+  wikimedia: "kaichen120"
 username_patterns:
   asciinema:
     characters: a-zA-Z0-9-
@@ -131,6 +134,11 @@ username_patterns:
     available_min_length: 6
     min_length: 5
     max_length: 15
+  wikimedia:
+    characters: a-zA-Z0-9-_.,!=()=;:\%*&~`
+    available_min_length: 6
+    min_length: 1
+    max_length: 85
 avatar:
   asciinema: false
   behance: false
@@ -153,9 +161,10 @@ avatar:
   tumblr: opengraph
   twitter:
     url: https://twitter.com/{u}/profile_image?size=original
+  wikimedia: false
 logos:
   # fontawesome: full class that you would normally put in a fontawesome element
-  facebook:
-    fontawesome: fa fa-facebook
+  wikimedia:
+    fontawesome: fa fa-wikipedia-w
   keybase:
     url: https://png.icons8.com/ios/30/000000/keybase.png

@@ -137,3 +137,10 @@ pinterest:
     - "steve"
   available_usernames:
     - "zNRe3jx3isA8CoM"
+wikimedia:
+  invalid_usernames:
+    - "$very%long{invalid}user(name);|<>"
+  taken_usernames:
+    - "kai"
+  available_usernames:
+    - "zNRe3jx3isA8CoM"
