@@ -144,3 +144,9 @@ avatar:
   tumblr: opengraph
   twitter:
     url: https://twitter.com/{u}/profile_image?size=original
+logos:
+  # fontawesome: full class that you would normally put in a fontawesome element
+  facebook:
+    fontawesome: fa fa-facebook
+  keybase:
+    url: https://png.icons8.com/ios/30/000000/keybase.png

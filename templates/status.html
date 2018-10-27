@@ -63,14 +63,17 @@
         function main ()  {
             // list of supported websites
             var sites = "{{sites}}".split(" ");
+            var logos = JSON.parse({{ logos|tojson|safe }});
 
             // create cards dynamically for each of the websites
             sites.forEach(website => {
+              var logoElement = constructLogoElement(website, logos);
               $(".helper").append(`
                 <div class="card">
                     <p>
                         <div class="tooltip">
-                            <i class="fa fa-${website}"></i>
+                            <${logoElement.htmlElement} ${logoElement.htmlAttribute}="${logoElement.attributeValue}">
+                            </${logoElement.htmlElement}>
                             <span class="tooltiptext">${website}</span>
                         </div>
                         <span id='${website}'>
@@ -85,6 +88,49 @@
             sites.forEach(website => {
                 request_api(website);
             });
+        }
+
+        function constructLogoElement (website, logos) {
+            // defaults to font awesome icons
+            var logoElement = {
+                attributeValue: `fa fa-${website}`,
+                htmlAttribute: 'class',
+                htmlElement: 'i',
+            };
+
+            if (logos[website]) {
+                // the key defined in the yml. e.g., url, fontawesome
+                var ymlKey = Object.keys(logos[website])[0];
+                // determines html attribute to be used to display icon. e.g., src, class
+                logoElement.htmlAttribute = determineLogoHtmlAttribute(ymlKey);
+                // determines html element to be used based off of the attribute. e.g., i, img
+                logoElement.htmlElement = determineLogoHtmlElement(logoElement.htmlAttribute);
+                // gets the attribute value from the yml file.
+                logoElement.attributeValue = logos[website][ymlKey];
+            }
+            return logoElement;
+        }
+
+        function determineLogoHtmlElement(htmlAttribute) {
+            var element;
+            if (htmlAttribute === 'src') {
+                element = 'img';
+            } else if (htmlAttribute === 'class') {
+                element = 'i';
+            }
+            return element;
+        }
+
+        function determineLogoHtmlAttribute(key) {
+            var attribute;
+            if (key === 'url') {
+                attribute = 'src';
+            } else if (key === 'fontawesome') {
+                attribute = 'class';
+            } else {
+                console.error("Incorrect logo key in yml.")
+            }
+            return attribute;
         }
     </script>
 </head>

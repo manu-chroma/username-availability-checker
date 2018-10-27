@@ -1,6 +1,7 @@
 import logging
 import os
 import sys
+import json
 
 from dotenv import load_dotenv
 from flask import Flask, request, render_template
@@ -24,6 +25,7 @@ PROTOCOL_BACKEND = os.environ.get('PROTOCOL_BACKEND')
 patterns = yaml.load(open('websites.yml'))
 
 sites = ' '.join(list(patterns['username_patterns'].keys()))
+logos = json.dumps(patterns['logos'])
 
 
 @app.route('/', methods=['GET'])
@@ -34,6 +36,7 @@ def my_form():
         return render_template('status.html',
                                username=username,
                                sites=sites,
+                               logos=logos,
                                host_backend=HOST_BACKEND,
                                port_backend=PORT_BACKEND,
                                protocol_backend=PROTOCOL_BACKEND)
@@ -47,6 +50,7 @@ def my_form_post():
     return render_template('status.html',
                            username=username,
                            sites=sites,
+                           logos=logos,
                            host_backend=HOST_BACKEND,
                            port_backend=PORT_BACKEND,
                            protocol_backend=PROTOCOL_BACKEND)
