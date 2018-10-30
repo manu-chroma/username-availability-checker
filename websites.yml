@@ -3,6 +3,7 @@ urls:
   asciinema: https://{w}.org/~{u}
   behance: https://{w}.net/{u}
   deviantart: https://{u}.{w}.com/
+  disqus: https://{w}.com/by/{u}
   facebook: https://mbasic.{w}.com/{u}
   gravatar: https://en.{w}.com/{u}
   keybase: https://{w}.io/{u}
@@ -21,6 +22,7 @@ constant_usernames:
   asciinema: "john"
   behance: "seeeturtle"
   deviantart: "joshua"
+  disqus: "seeeturtle"
   facebook: "gyanlakhwani"
   github: "seeeturtle"
   gitlab: "andrewda"
@@ -54,6 +56,11 @@ username_patterns:
     invalid_patterns:
       - "^-"
       - "-$"
+  disqus:
+    characters: a-z0-9A-Z_
+    available_min_length: 5
+    min_length: 2
+    max_length: 30
   facebook:
     characters: a-z0-9A-Z.
     available_min_length: 6
@@ -143,6 +150,7 @@ avatar:
   asciinema: false
   behance: false
   deviantart: opengraph
+  disqus: opengraph
   facebook: opengraph
   github: opengraph
   gitlab: opengraph
