@@ -278,3 +278,10 @@ img
     max-width:340px;
   }
 }
+
+#usernames {
+  max-width: 80%;
+  margin: auto;
+  text-align: center;
+  color: black;
+}
