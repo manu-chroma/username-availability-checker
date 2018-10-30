@@ -9,9 +9,22 @@ urls:
   medium: https://{w}.com/@{u}
   openhub: https://www.{w}.net/accounts/{u}
   opensuse: https://connect.{w}.org/pg/profile/{u}
-  pinterest: https://in.{w}.com/{u}
+  pinterest: https://www.{w}.com/{u}
   tumblr: https://{u}.{w}.com
-  wikimedia: http://meta.{w}.org/wiki/Special:CentralAuth/{u}
+  wikimedia: https://meta.{w}.org/wiki/Special:CentralAuth/{u}
+signup:
+  asciinema: https://{w}.org/login/new
+  behance: https://{w}.net/signup
+  deviantart: https://join.{w}.com/
+  facebook: https://mbasic.{w}.com/reg
+  gravatar: https://en.{w}.com/site/signup
+  keybase: https://{w}.io/
+  medium: https://{w}.com/m/signin
+  openhub: https://www.{w}.net/accounts/accounts/new
+  opensuse: https://www.microfocus.com/selfreg/jsp/createOpenSuseAccount.jsp
+  pinterest: https://www.{w}.com/
+  tumblr: https://www.{w}.com
+  wikimedia: https://meta.{w}.org/w/index.php?title=Special:CreateAccount
 content_verification:
   gitlab: "Snippets"
   opensuse: "About me"
