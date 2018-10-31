@@ -320,8 +320,10 @@ def hello():
 @cross_origin(origin='*')
 def check(website, username):
     return jsonify(check_username(website, username))
-    
+
 # frontend
+
+
 @app.route('/', methods=['GET'])
 @cross_origin()
 def my_form():
@@ -335,6 +337,7 @@ def my_form():
                                port_backend=PORT_BACKEND,
                                protocol_backend=PROTOCOL_BACKEND)
     return render_template('form.html')
+
 
 @app.route('/', methods=['POST'])
 @cross_origin(origin='*')
