@@ -35,7 +35,7 @@
             return await
             $.ajax({
                 dataType: 'json',
-                url     : `{{protocol_backend}}://{{host_backend}}:{{port_backend}}/check/${site}/{{username}}`,
+                url     : `{{protocol_backend}}://{{host_backend}}:{{port_backend}}/api/check/${site}/{{username}}`,
             })
             .then((result) => {
                 var res = result;
