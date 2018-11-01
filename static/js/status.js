@@ -1,10 +1,3 @@
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-
-gtag('config', 'UA-72356300-6');
-
-
 async function request_api(site) {
 	return await
 	$.ajax({
@@ -31,7 +24,7 @@ async function request_api(site) {
 	})
 	.fail(() => {
 	   $("#" + site)[0].innerHTML = 'Don\'t know';
-   });
+	});
 }
 
 function main ()  {
@@ -55,7 +48,7 @@ function main ()  {
 				</span>
 			</p>
 		</div>`)
-  });
+	});
 
 	// iterate over all the websites and call
 	// call request_api each of the wesbite
