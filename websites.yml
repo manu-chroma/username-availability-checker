@@ -13,28 +13,28 @@ urls:
   tumblr: https://{u}.{w}.com
   wikimedia: http://meta.{w}.org/wiki/Special:CentralAuth/{u}
 content_verification:
-  gitlab: "Snippets"
-  opensuse: "About me"
-  pinterest: "{u}"
-  wikimedia: "Registered"
+  gitlab: 'Snippets'
+  opensuse: 'About me'
+  pinterest: '{u}'
+  wikimedia: 'Registered'
 constant_usernames:
-  asciinema: "john"
-  behance: "seeeturtle"
-  deviantart: "joshua"
-  facebook: "gyanlakhwani"
-  github: "seeeturtle"
-  gitlab: "andrewda"
-  gravatar: "kaiusesthis"
-  instagram: "ElonMusk"
-  keybase: "jayvdb"
-  medium: "MediumStaff"
-  openhub: "seeeturtle"
-  opensuse: "biscuitsnake"
-  pinterest: "steve"
-  soundcloud: "postmalone"
-  tumblr: "steve"
-  twitter: "ElonMusk"
-  wikimedia: "kaichen120"
+  asciinema: 'john'
+  behance: 'seeeturtle'
+  deviantart: 'joshua'
+  facebook: 'gyanlakhwani'
+  github: 'seeeturtle'
+  gitlab: 'andrewda'
+  gravatar: 'kaiusesthis'
+  instagram: 'ElonMusk'
+  keybase: 'jayvdb'
+  medium: 'MediumStaff'
+  openhub: 'seeeturtle'
+  opensuse: 'biscuitsnake'
+  pinterest: 'steve'
+  soundcloud: 'postmalone'
+  tumblr: 'steve'
+  twitter: 'ElonMusk'
+  wikimedia: 'kaichen120'
 username_patterns:
   asciinema:
     characters: a-zA-Z0-9-
@@ -52,15 +52,15 @@ username_patterns:
     min_length: 3
     max_length: 20
     invalid_patterns:
-      - "^-"
-      - "-$"
+      - '^-'
+      - '-$'
   facebook:
     characters: a-z0-9A-Z.
     available_min_length: 6
     min_length: 5
     max_length: 50
     invalid_patterns:
-      - "\\.(com|net)"
+      - '\\.(com|net)'
       - "(\\.)\\1{1,}"  # consecutive '.' not allowed
   gitlab:
     characters: a-zA-Z0-9_.-
@@ -73,9 +73,9 @@ username_patterns:
     min_length: 1
     max_length: 39
     invalid_patterns:
-      - "-{2,}"
-      - "^-"
-      - "-$"
+      - '-{2,}'
+      - '^-'
+      - '-$'
   gravatar:
     characters: a-zA-Z0-9
     available_min_length: 4
@@ -92,8 +92,8 @@ username_patterns:
     min_length: 2
     max_length: 15
     invalid_patterns:
-      - "_{2,}"
-      - "^_"
+      - '_{2,}'
+      - '^_'
   medium:
     characters: a-zA-Z0-9_.
     available_min_length: 5
@@ -105,7 +105,7 @@ username_patterns:
     min_length: 3
     max_length: 40
     invalid_patterns:
-      - "^[^a-zA-Z]"
+      - '^[^a-zA-Z]'
   opensuse:
     characters: a-zA-Z0-9_-
     available_min_length: 3
@@ -127,8 +127,8 @@ username_patterns:
     min_length: 1
     max_length: 32
     invalid_patterns:
-      - "^-"
-      - "-$"
+      - '^-'
+      - '-$'
   twitter:
     characters: a-zA-Z0-9_
     available_min_length: 6
@@ -147,7 +147,7 @@ avatar:
   github: opengraph
   gitlab: opengraph
   gravatar:
-    html_selector: ".photo-0"
+    html_selector: '.photo-0'
   instagram: opengraph
   keybase: opengraph
   medium: opengraph
