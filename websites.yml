@@ -165,6 +165,6 @@ avatar:
 logos:
   # fontawesome: full class that you would normally put in a fontawesome element
   wikimedia:
-    fontawesome: fa fa-wikipedia-w
+    fontawesome: fas fa-wikipedia-w
   keybase:
     url: https://png.icons8.com/ios/30/000000/keybase.png
