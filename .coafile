@@ -25,7 +25,7 @@ bears = LineLengthBear
 
 [css]
 files = static/css/*.css
-bears = LineLengthBear, SpaceConsistencyBear
+bears = LineLengthBear, SpaceConsistencyBear, StyleLintBear
 use_spaces = true
 ignore_length_regex = url #ignore links
 

@@ -15,8 +15,15 @@
 
     <!-- from static folder -->
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
-    <script src="https://use.fontawesome.com/538119ba0a.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.4.2/js/all.js" integrity="sha384-wp96dIgDl5BLlOXb4VMinXPNiB32VYBSoXOoiARzSTXY+tsK8yDTYfvdTyqzdGGN" crossorigin="anonymous"></script>
     <link rel="shortcut icon" type="image/png" href="favicon32.png" />
+
+    <!-- status logic -->
+    <script>
+        // inject config data from backend in the global var 
+        var data = {{data | json}};
+    </script>
+    <!-- data is used by status.js, so it must be defined before status.js import -->
     <script src="js/status.js"></script>
 
     <title>Results - Username Availability Checker</title>
@@ -29,6 +36,7 @@
     gtag('js', new Date());
     gtag('config', 'UA-72356300-6');
     </script>
+
 </head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

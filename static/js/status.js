@@ -1,4 +1,4 @@
-async function request_api(site) {
+async function request_api(site, signup) {
 	return await
 	$.ajax({
 		dataType: 'json',
@@ -11,7 +11,7 @@ async function request_api(site) {
 		else if (!res['possible'])
 			$("#" + site)[0].innerHTML = 'Impossible';
 		else if (res['status'] == '404' || res['status'] == '301')
-			$("#" + site)[0].innerHTML = 'Available';
+		$("#" + site)[0].innerHTML = `<a href="${signup}">Available</a>`;
 		// handling facebook edge case, when the
 		// username exists but the url is not accessible
 		else if (site == 'facebook' && res['profile'] == 'hidden')
@@ -30,6 +30,7 @@ async function request_api(site) {
 function main ()  {
 	// list of supported websites
 	var sites = "{{sites}}".split(" ");
+	var signup= "{{signup}}".split(" ");
 	var logos = JSON.parse({{ logos|tojson|safe }});
 
 	// create cards dynamically for each of the websites
@@ -44,7 +45,7 @@ function main ()  {
 					<span class="tooltiptext">${website}</span>
 				</div>
 				<span id='${website}'>
-					<i class="fa fa-circle-o-notch fa-spin"></i>
+					<i class="fas fa-circle-o-notch fa-spin"></i>
 				</span>
 			</p>
 		</div>`)
@@ -53,14 +54,14 @@ function main ()  {
 	// iterate over all the websites and call
 	// call request_api each of the wesbite
 	sites.forEach(website => {
-		request_api(website);
+		request_api(website, signup);
 	});
 }
 
 function constructLogoElement (website, logos) {
 	// defaults to font awesome icons
 	var logoElement = {
-		attributeValue: `fa fa-${website}`,
+		attributeValue: `fab fa-${website}`,
 		htmlAttribute: 'class',
 		htmlElement: 'i',
 	};
