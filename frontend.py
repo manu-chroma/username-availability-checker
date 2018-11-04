@@ -26,7 +26,6 @@ patterns = yaml.load(open('websites.yml'))
 
 sites = ' '.join(list(patterns['username_patterns'].keys()))
 logos = json.dumps(patterns['logos'])
-signup = ' '.join(list(patterns['signup'].keys()))
 
 
 @app.route('/', methods=['GET'])
@@ -37,7 +36,6 @@ def my_form():
         data = {
             'username': username,
             'sites': sites,
-            'signup': signup,
             'logos': logos,
             'host_backend': HOST_BACKEND,
             'port_backend': PORT_BACKEND,
@@ -55,7 +53,6 @@ def my_form_post():
     data = {
             'username': username,
             'sites': sites,
-            'signup': signup,
             'logos': logos,
             'host_backend': HOST_BACKEND,
             'port_backend': PORT_BACKEND,
