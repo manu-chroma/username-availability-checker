@@ -1,17 +1,17 @@
-async function request_api(site, username, signup, backend_config) {
+async function request_api(site, username, backend_config) {
 	return await
 	$.ajax({
 		dataType: 'json',
 		url     : `${backend_config.protocol_backend}://${backend_config.host_backend}:${backend_config.port_backend}/check/${site}/${username}`,
 	})
 	.then((result) => {
-		var res = result;
+		const res = result;
 		if (!res['usable'])
 			$("#" + site)[0].innerHTML = 'Website Down';
 		else if (!res['possible'])
 			$("#" + site)[0].innerHTML = 'Impossible';
 		else if (res['status'] == '404' || res['status'] == '301')
-		$("#" + site)[0].innerHTML = `<a href="${signup}">Available</a>`;
+		$("#" + site)[0].innerHTML = `Available`;
 		// handling facebook edge case, when the
 		// username exists but the url is not accessible
 		else if (site == 'facebook' && res['profile'] == 'hidden')
@@ -29,9 +29,8 @@ async function request_api(site, username, signup, backend_config) {
 
 function main ()  {
 	// list of supported websites
-	var sites = data.sites.split(" ");
-	var signup= data.signup.split(" ");
-	var logos = JSON.parse(data.logos);
+	const sites = data.sites.split(" ");
+	const logos = JSON.parse(data.logos);
 	let username = data.username;
 
 	/* backend config */
@@ -43,7 +42,7 @@ function main ()  {
 	
 	// create cards dynamically for each of the websites
 	sites.forEach(website => {
-	  var logoElement = constructLogoElement(website, logos);
+	  const logoElement = constructLogoElement(website, logos);
 	  $(".helper").append(`
 		<div class="card">
 			<p>
@@ -62,13 +61,13 @@ function main ()  {
 	// iterate over all the websites and call
 	// call request_api each of the wesbite
 	sites.forEach(website => {
-		request_api(website, username, signup, backend_config);
+		request_api(website, username, backend_config);
 	});
 }
 
 function constructLogoElement (website, logos) {
 	// defaults to font awesome icons
-	var logoElement = {
+	let logoElement = {
 		attributeValue: `fab fa-${website}`,
 		htmlAttribute: 'class',
 		htmlElement: 'i',
@@ -76,7 +75,7 @@ function constructLogoElement (website, logos) {
 
 	if (logos[website]) {
 		// the key defined in the yml. e.g., url, fontawesome
-		var ymlKey = Object.keys(logos[website])[0];
+		let ymlKey = Object.keys(logos[website])[0];
 		// determines html attribute to be used to display icon. e.g., src, class
 		logoElement.htmlAttribute = determineLogoHtmlAttribute(ymlKey);
 		// determines html element to be used based off of the attribute. e.g., i, img
@@ -88,7 +87,7 @@ function constructLogoElement (website, logos) {
 }
 
 function determineLogoHtmlElement(htmlAttribute) {
-	var element;
+	let element;
 	if (htmlAttribute === 'src') {
 		element = 'img';
 	} else if (htmlAttribute === 'class') {
@@ -98,7 +97,7 @@ function determineLogoHtmlElement(htmlAttribute) {
 }
 
 function determineLogoHtmlAttribute(key) {
-	var attribute;
+	let attribute;
 	if (key === 'url') {
 		attribute = 'src';
 	} else if (key === 'fontawesome') {
