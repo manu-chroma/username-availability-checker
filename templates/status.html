@@ -20,8 +20,8 @@
 
     <!-- status logic -->
     <script>
-        // inject config data from backend in the global var 
-        var data = {{data | json}};
+        // inject config data from backend in the global var
+        var data = {{data | tojson}};
     </script>
     <!-- data is used by status.js, so it must be defined before status.js import -->
     <script src="js/status.js"></script>

@@ -1,8 +1,8 @@
-async function request_api(site, signup) {
+async function request_api(site, username, signup, backend_config) {
 	return await
 	$.ajax({
 		dataType: 'json',
-		url     : `{{protocol_backend}}://{{host_backend}}:{{port_backend}}/check/${site}/{{username}}`,
+		url     : `${backend_config.protocol_backend}://${backend_config.host_backend}:${backend_config.port_backend}/check/${site}/${username}`,
 	})
 	.then((result) => {
 		var res = result;
@@ -29,10 +29,18 @@ async function request_api(site, signup) {
 
 function main ()  {
 	// list of supported websites
-	var sites = "{{sites}}".split(" ");
-	var signup= "{{signup}}".split(" ");
-	var logos = JSON.parse({{ logos|tojson|safe }});
+	var sites = data.sites.split(" ");
+	var signup= data.signup.split(" ");
+	var logos = JSON.parse(data.logos);
+	let username = data.username;
 
+	/* backend config */
+	const backend_config = {
+		protocol_backend: data.protocol_backend,
+		host_backend:  data.host_backend,
+		port_backend: data.port_backend
+	} 
+	
 	// create cards dynamically for each of the websites
 	sites.forEach(website => {
 	  var logoElement = constructLogoElement(website, logos);
@@ -45,7 +53,7 @@ function main ()  {
 					<span class="tooltiptext">${website}</span>
 				</div>
 				<span id='${website}'>
-					<i class="fas fa-circle-o-notch fa-spin"></i>
+					<i class="fas fa-circle-notch fa-spin"></i>
 				</span>
 			</p>
 		</div>`)
@@ -54,7 +62,7 @@ function main ()  {
 	// iterate over all the websites and call
 	// call request_api each of the wesbite
 	sites.forEach(website => {
-		request_api(website, signup);
+		request_api(website, username, signup, backend_config);
 	});
 }
 
