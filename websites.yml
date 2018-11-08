@@ -73,7 +73,7 @@ username_patterns:
     min_length: 5
     max_length: 50
     invalid_patterns:
-      - '\\.(com|net)'
+      - '\.(com|net)'
       - "(\\.)\\1{1,}"  # consecutive '.' not allowed
   gitlab:
     characters: a-zA-Z0-9_.-
