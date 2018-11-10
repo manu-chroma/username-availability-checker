@@ -26,7 +26,6 @@ patterns = yaml.load(open('websites.yml'))
 
 sites = ' '.join(list(patterns['username_patterns'].keys()))
 logos = json.dumps(patterns['logos'])
-signup = ' '.join(list(patterns['signup'].keys()))
 
 
 @app.route('/', methods=['GET'])
@@ -34,14 +33,16 @@ signup = ' '.join(list(patterns['signup'].keys()))
 def my_form():
     username = request.args.get('username', '')
     if username:
-        return render_template('status.html',
-                               username=username,
-                               sites=sites,
-                               signup=signup,
-                               logos=logos,
-                               host_backend=HOST_BACKEND,
-                               port_backend=PORT_BACKEND,
-                               protocol_backend=PROTOCOL_BACKEND)
+        data = {
+            'username': username,
+            'sites': sites,
+            'logos': logos,
+            'host_backend': HOST_BACKEND,
+            'port_backend': PORT_BACKEND,
+            'protocol_backend': PROTOCOL_BACKEND
+        }
+        return render_template('status.html', data=data)
+
     return render_template('form.html')
 
 
@@ -49,14 +50,15 @@ def my_form():
 @cross_origin(origin='*')
 def my_form_post():
     username = request.form['text']
-    return render_template('status.html',
-                           username=username,
-                           sites=sites,
-                           signup=signup,
-                           logos=logos,
-                           host_backend=HOST_BACKEND,
-                           port_backend=PORT_BACKEND,
-                           protocol_backend=PROTOCOL_BACKEND)
+    data = {
+            'username': username,
+            'sites': sites,
+            'logos': logos,
+            'host_backend': HOST_BACKEND,
+            'port_backend': PORT_BACKEND,
+            'protocol_backend': PROTOCOL_BACKEND
+        }
+    return render_template('status.html', data=data)
 
 
 if __name__ == '__main__':
