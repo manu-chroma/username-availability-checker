@@ -1,6 +1,6 @@
 click==6.6 # Temporary fix for coala error with dependencies
 pytest
-pytest-rerunfailures
+pytest-rerunfailures==4.2
 parameterized==0.6.1
 exrex==0.10.5
 coala
