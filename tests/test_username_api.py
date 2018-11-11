@@ -131,12 +131,12 @@ class TestUsernameApi(object):
         self.websites = websites
 
     @parameterized.expand(load_availability_test_cases('available_username'),
-                          testcase_func_name=custom_name_func)
+                          name_func=custom_name_func)
     def test_available_username(self, website, user):
         assert_response(self.app, website, user, 404)
 
     @parameterized.expand(load_availability_test_cases('random_max_username'),
-                          testcase_func_name=custom_name_func)
+                          name_func=custom_name_func)
     def test_random_max_username(self, website, user):
         assert_response(self.app, website, user, 404)
 
@@ -148,12 +148,12 @@ class TestUsernameApi(object):
                         404)
 
     @parameterized.expand(load_availability_test_cases('taken_username'),
-                          testcase_func_name=custom_name_func)
+                          name_func=custom_name_func)
     def test_taken_username(self, website, user):
         assert_response(self.app, website, user, 200)
 
     @parameterized.expand(load_format_checking_cases(),
-                          testcase_func_name=custom_name_func)
+                          name_func=custom_name_func)
     def test_format_checking(self, website, username):
         resp = self.app.get('/check/{w}/{u}'.format(w=website, u=username))
         json_resp = json.loads(resp.get_data().decode())

@@ -44,7 +44,7 @@ def debug():
 class TestGetAvatar(object):
 
     @parameterized.expand(load_test_cases('with_avatar'),
-                          testcase_func_name=custom_name_func)
+                          name_func=custom_name_func)
     def test_with_avatar(self, website, user):
         if not user:
             pytest.skip('website not supported')
@@ -55,7 +55,7 @@ class TestGetAvatar(object):
                 'application/octet-stream')
 
     @parameterized.expand(load_test_cases('without_avatar'),
-                          testcase_func_name=custom_name_func)
+                          name_func=custom_name_func)
     def test_without_avatar(self, website, user):
         if not user:
             pytest.skip('website not supported')

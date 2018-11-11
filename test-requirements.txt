@@ -1,8 +1,8 @@
 click==6.6 # Temporary fix for coala error with dependencies
-pytest
-pytest-rerunfailures==4.2
-parameterized==0.6.1
-exrex==0.10.5
-coala
-coala-bears
-requests-toolbelt==0.8.0
+pytest~=3.10.0
+pytest-rerunfailures~=5.0
+parameterized~=0.6.1
+exrex~=0.10.5
+coala~=0.11.0
+coala-bears~=0.11.1
+requests-toolbelt~=0.8.0

@@ -8,7 +8,7 @@ import yaml
 from requests_toolbelt.utils import dump
 from bs4 import BeautifulSoup
 from flask import Flask, jsonify
-from flask.ext.cors import CORS, cross_origin
+from flask_cors import CORS, cross_origin
 from werkzeug.contrib.cache import SimpleCache
 
 app = Flask(__name__)
