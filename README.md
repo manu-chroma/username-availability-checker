@@ -20,6 +20,18 @@ pip install -r requirements.txt
 pip install -r test-requirements.txt
 ```
 
+Install nltk data from python shell
+
+```
+python
+>>> import nltk
+>>> nltk_download('punkt')
+>>> nltk_download('averaged_perceptron_tagger')
+>>> nltk_download('maxent_ne_chunker')
+>>> nltk_download('words')
+>>> nltk_download('wordnet')
+```
+
 ### Setup config file
 Copy and rename .env.copy to .env by:
 

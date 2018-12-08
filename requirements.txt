@@ -5,3 +5,4 @@ requests~=2.12
 pyyaml==3.12
 beautifulsoup4==4.6.0
 python-dotenv==0.7.1
+nltk>=3.3
