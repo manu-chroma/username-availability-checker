@@ -8,6 +8,8 @@ from flask import Flask, request, render_template
 from flask.ext.cors import CORS, cross_origin
 import yaml
 
+from real_name_checker import is_real_name
+
 app = Flask(__name__,
             static_url_path='',
             static_folder='static')
@@ -27,6 +29,7 @@ patterns = yaml.load(open('websites.yml'))
 sites = ' '.join(list(patterns['username_patterns'].keys()))
 logos = json.dumps(patterns['logos'])
 signup = ' '.join(list(patterns['signup'].keys()))
+real_name = 'no'
 
 
 @app.route('/', methods=['GET'])
@@ -34,11 +37,14 @@ signup = ' '.join(list(patterns['signup'].keys()))
 def my_form():
     username = request.args.get('username', '')
     if username:
+        if is_real_name(usermame):
+            real_name = 'yes'
         return render_template('status.html',
                                username=username,
                                sites=sites,
                                signup=signup,
                                logos=logos,
+                               real_name=real_name,
                                host_backend=HOST_BACKEND,
                                port_backend=PORT_BACKEND,
                                protocol_backend=PROTOCOL_BACKEND)
@@ -49,11 +55,14 @@ def my_form():
 @cross_origin(origin='*')
 def my_form_post():
     username = request.form['text']
+    if is_real_name(username):
+        real_name = 'yes'
     return render_template('status.html',
                            username=username,
                            sites=sites,
                            signup=signup,
                            logos=logos,
+                           real_name=real_name,
                            host_backend=HOST_BACKEND,
                            port_backend=PORT_BACKEND,
                            protocol_backend=PROTOCOL_BACKEND)

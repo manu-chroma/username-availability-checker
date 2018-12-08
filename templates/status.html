@@ -13,6 +13,9 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
+    <!--- For Modal -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <!-- from static folder -->
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
     <script defer src="https://use.fontawesome.com/releases/v5.4.2/js/all.js" integrity="sha384-wp96dIgDl5BLlOXb4VMinXPNiB32VYBSoXOoiARzSTXY+tsK8yDTYfvdTyqzdGGN" crossorigin="anonymous"></script>
@@ -65,6 +68,26 @@
             var sites = "{{sites}}".split(" ");
             var signup= "{{signup}}".split(" ");
             var logos = JSON.parse({{ logos|tojson|safe }});
+
+            var real_name = "{{real_name}}"
+            // Modal for telling user to not to use real names
+            if (real_name === "yes") {
+                // Create Modal
+                swal({
+                    icon: "warning",
+                    title: "Wait",
+                    text: "Seems like you are trying to use a (full) real name as a username! It's never a good idea! Think of some other username.",
+                    button: "Got it! Try a new username!",
+                    closeOnEsc: false,
+                    closeOnClickOutside: false,
+                    })
+                    .then((changeUsername) => {
+                        if (changeUsername) {
+                            window.location = "https://username-check.herokuapp.com/";
+                        }
+                    }
+                });
+            }
 
             // create cards dynamically for each of the websites
             sites.forEach(website => {
