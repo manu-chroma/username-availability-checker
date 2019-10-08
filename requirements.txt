@@ -2,6 +2,6 @@ Flask==0.10.1
 Flask-Cors==2.1.2
 gunicorn==19.4.5
 requests~=2.12
-pyyaml==3.12
+pyyaml==5.1
 beautifulsoup4==4.6.0
 python-dotenv==0.7.1
