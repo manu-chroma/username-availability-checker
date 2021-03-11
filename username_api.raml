@@ -1,0 +1,36 @@
+#%RAML 1.0
+
+title: username-availability API
+version: v1
+protocols: [ HTTPS ]
+baseUri: https://username-availability.herokuapp.com
+
+types:
+  Check:
+    type: object
+    properties:
+      avatar?: null | string
+      possible: boolean
+      profile?: string
+      status?: number
+      url: string
+      usable: boolean
+
+/check:
+  /{website}:
+    uriParameters:
+      website:
+        type: string
+        required: true
+    /{username}:
+      uriParameters:
+        username:
+          type: string
+          required: true
+      get:
+        description: Retrieve json for result of checking username
+        responses:
+          200:
+            body:
+              application/json:
+                type: Check
